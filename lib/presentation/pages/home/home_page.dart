@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
 import 'package:music_app/presentation/providers/audio_player_provider/audio_player_provider.dart';
 import 'package:music_app/presentation/providers/songs_provider/songs_provider.dart';
 import 'package:music_app/presentation/widgets/music_tile_widget.dart';
+import 'package:music_app/presentation/widgets/shimmers/music_list_shimmer.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
@@ -32,26 +34,45 @@ class HomePage extends ConsumerWidget {
             ),
             // list view
             ref.watch(songsProvider).when(
-                  data: (data) => SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) => InkWell(
-                        onTap: () {
-                          ref.read(playBarProvider.notifier).state = true;
-                          // read song path
-                          ref
-                              .read(audioPlayerProvider)
-                              .setFilePath(data[index].data);
-                          // play song for click
-                          ref.read(audioPlayerProvider).play();
+                  data: (data) {
+                    return SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          // set audio source
+                          final List<AudioSource> audioSources = data
+                              .map(
+                                (source) => AudioSource.file(source.data),
+                              )
+                              .toList();
+                          // create playlist
+                          final playlist =
+                              ConcatenatingAudioSource(children: audioSources);
+                          // music list view
+                          return InkWell(
+                            onTap: () {
+                              //player visibler
+                              ref.read(playBarProvider.notifier).state = true;
+                              ref.invalidate(playStateProvider);
+                              ref.invalidate(currentIndexProvider);
+                              // read song path
+                              ref.read(audioPlayerProvider).setAudioSource(
+                                    playlist,
+                                    initialIndex: index,
+                                  );
+
+                              // play song for click
+                              ref.read(audioPlayerProvider).play();
+                            },
+                            child: MusicTileWidget(
+                              songName: data[index].title.substring(0, 20),
+                              singer: data[index].artist ?? '',
+                            ),
+                          );
                         },
-                        child: MusicTileWidget(
-                          songName: data[index].title.substring(0, 20),
-                          singer: data[index].artist ?? '',
-                        ),
+                        childCount: data.length,
                       ),
-                      childCount: data.length,
-                    ),
-                  ),
+                    );
+                  },
                   error: (error, stackTrace) => SliverList(
                     delegate: SliverChildListDelegate(
                       [
@@ -67,15 +88,7 @@ class HomePage extends ConsumerWidget {
                       ],
                     ),
                   ),
-                  loading: () => SliverList(
-                    delegate: SliverChildListDelegate(
-                      [
-                        const Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      ],
-                    ),
-                  ),
+                  loading: () => const MusicListShimmer(),
                 )
           ],
         ),

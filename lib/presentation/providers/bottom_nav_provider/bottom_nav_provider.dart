@@ -17,5 +17,7 @@ class BottomNav extends _$BottomNav {
 
 @riverpod
 PageController pageController(PageControllerRef ref) {
-  return PageController(initialPage: 0);
+  return PageController(
+    initialPage: 0,
+  );
 }

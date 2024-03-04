@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_app/presentation/pages/about/about_page.dart';
 import 'package:music_app/presentation/pages/home/home_page.dart';
 import 'package:music_app/presentation/pages/library/library_page.dart';
 import 'package:music_app/presentation/pages/main_page/widget/music_player_bar.dart';
+import 'package:music_app/presentation/pages/music_player/music_player_page.dart';
 import 'package:music_app/presentation/pages/search/search_page.dart';
 import 'package:music_app/presentation/providers/audio_player_provider/audio_player_provider.dart';
 import 'package:music_app/presentation/providers/bottom_nav_provider/bottom_nav_provider.dart';
@@ -33,11 +36,14 @@ class MainPage extends ConsumerWidget {
       // bottom song info and controller
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: ref.watch(playBarProvider)
-          ? InkWell(
-              onTap: () {},
-              child: const MusicPlayerBar(),
+          ? MusicPlayerBar(
+              onTap: () {
+                //Navigate music player screen
+                Navigator.pushNamed(context, MusicPlayerPage.routeName);
+              },
             )
           : const SizedBox.shrink(),
+
       bottomNavigationBar: const ZingBottomNavBarWidget(),
     );
   }

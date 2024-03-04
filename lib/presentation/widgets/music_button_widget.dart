@@ -8,10 +8,12 @@ class MusicButtonWidget extends StatelessWidget {
     required this.icon,
     required this.onPressed,
     this.size = 30,
+    this.iconColor = AppColors.white,
   });
   final IconData icon;
   final VoidCallback onPressed;
   final double size;
+  final Color iconColor;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class MusicButtonWidget extends StatelessWidget {
       onPressed: onPressed,
       icon: Icon(
         icon,
-        color: AppColors.white,
+        color: iconColor,
         size: context.width(size),
       ),
     );

@@ -70,14 +70,6 @@ class MusicTileWidget extends StatelessWidget {
               ],
             ),
             // spacer
-            const Spacer(),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.favorite_border_outlined,
-                color: AppColors.white,
-              ),
-            )
           ],
         ),
       ),

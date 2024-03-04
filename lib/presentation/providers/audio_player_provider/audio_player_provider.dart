@@ -13,3 +13,7 @@ AudioPlayer audioPlayer(AudioPlayerRef ref) {
 final playStateProvider = StateProvider<bool>((ref) => false);
 
 final playBarProvider = StateProvider<bool>((ref) => false);
+
+final shuffleStateProvider = StateProvider<bool>((ref) => false);
+
+final repeatStateProvider = StateProvider<bool>((ref) => false);
