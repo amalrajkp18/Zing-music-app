@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'bottom_nav.dart';
+part of 'bottom_nav_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -21,11 +21,11 @@ final pageControllerProvider = AutoDisposeProvider<PageController>.internal(
 );
 
 typedef PageControllerRef = AutoDisposeProviderRef<PageController>;
-String _$bottomNavHash() => r'b56e9044eb5bd03d8e0331697e4ac8179d6b8af5';
+String _$bottomNavHash() => r'd7033f89cafd7ecb0753b4671067520e715fa179';
 
 /// See also [BottomNav].
 @ProviderFor(BottomNav)
-final bottomNavProvider = NotifierProvider<BottomNav, int>.internal(
+final bottomNavProvider = AutoDisposeNotifierProvider<BottomNav, int>.internal(
   BottomNav.new,
   name: r'bottomNavProvider',
   debugGetCreateSourceHash:
@@ -34,6 +34,6 @@ final bottomNavProvider = NotifierProvider<BottomNav, int>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef _$BottomNav = Notifier<int>;
+typedef _$BottomNav = AutoDisposeNotifier<int>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

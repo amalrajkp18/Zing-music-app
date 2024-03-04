@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
-import 'package:music_app/presentation/providers/bottom_nav_provider/bottom_nav.dart';
+import 'package:music_app/presentation/providers/bottom_nav_provider/bottom_nav_provider.dart';
 
 class ZingBottomNavBarWidget extends ConsumerWidget {
   const ZingBottomNavBarWidget({

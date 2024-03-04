@@ -61,6 +61,7 @@ class AboutPage extends StatelessWidget {
             ),
             // height space
             WhiteSpace.space(context: context, height: 30),
+            // connect apps
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

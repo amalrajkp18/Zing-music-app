@@ -1,24 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'splash_provider.dart';
+part of 'songs_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$splashHash() => r'69004dbd7a9d106df0639fadfc728e55ed74c0da';
+String _$songsHash() => r'f46d268b4eecea210c5e85e08c05b76bb357dccf';
 
-/// See also [splash].
-@ProviderFor(splash)
-final splashProvider = AutoDisposeFutureProvider<Widget>.internal(
-  splash,
-  name: r'splashProvider',
+/// See also [songs].
+@ProviderFor(songs)
+final songsProvider = AutoDisposeFutureProvider<List<SongModel>>.internal(
+  songs,
+  name: r'songsProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$splashHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$songsHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef SplashRef = AutoDisposeFutureProviderRef<Widget>;
+typedef SongsRef = AutoDisposeFutureProviderRef<List<SongModel>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

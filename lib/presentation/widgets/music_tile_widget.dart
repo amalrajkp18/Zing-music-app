@@ -7,7 +7,11 @@ import 'package:music_app/core/utils/white_space.dart';
 class MusicTileWidget extends StatelessWidget {
   const MusicTileWidget({
     super.key,
+    required this.songName,
+    required this.singer,
   });
+  final String songName;
+  final String singer;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +49,7 @@ class MusicTileWidget extends StatelessWidget {
               children: [
                 // music title
                 Text(
-                  "Take care of you",
+                  songName,
                   style: GoogleFonts.nunito(
                     color: AppColors.white,
                     fontSize: context.width(17),
@@ -56,7 +60,7 @@ class MusicTileWidget extends StatelessWidget {
                 WhiteSpace.space(context: context, height: 5),
                 // singer name
                 Text(
-                  "Admina Thembi",
+                  singer,
                   style: GoogleFonts.nunito(
                     color: AppColors.whiteSmokeGrey,
                     fontSize: context.width(13),

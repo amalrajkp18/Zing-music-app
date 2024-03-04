@@ -16,7 +16,7 @@ class MusicImageWidget extends StatelessWidget {
           context.width(36),
         ),
         image: const DecorationImage(
-          image: AssetImage("assets/images/img_music_thumbnail.png"),
+          image: AssetImage("assets/images/img_music_list.png"),
           fit: BoxFit.cover,
         ),
       ),

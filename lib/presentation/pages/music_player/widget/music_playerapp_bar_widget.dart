@@ -4,7 +4,8 @@ import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
 import 'package:music_app/presentation/widgets/music_button_widget.dart';
 
-AppBar musicPlayerAppBarWidget(BuildContext context) {
+AppBar musicPlayerAppBarWidget(
+    {required BuildContext context, required String title}) {
   return AppBar(
     leading: MusicButtonWidget(
       icon: Icons.arrow_back_ios,
@@ -14,7 +15,7 @@ AppBar musicPlayerAppBarWidget(BuildContext context) {
     ),
     // song title
     title: Text(
-      "Playing",
+      title,
       style: GoogleFonts.nunito(
         color: AppColors.white,
         fontSize: context.width(22),

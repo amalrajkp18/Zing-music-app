@@ -16,8 +16,38 @@ class SplashPage extends ConsumerWidget {
           // after compelete navigate home page
           data: (data) => data,
           // when error occur
-          error: (error, stackTrace) => Center(
-            child: Text("error ${error.toString()}"),
+          error: (error, stackTrace) => Scaffold(
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "error ${error.toString()}",
+                    style: GoogleFonts.nunito(
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  // height space
+                  WhiteSpace.space(context: context, height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      ref.invalidate(splashProvider);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.playPauseCircle,
+                    ),
+                    child: Text(
+                      "Grant Permmission",
+                      style: GoogleFonts.nunito(
+                        color: AppColors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
           // splash screen
           loading: () => Scaffold(
