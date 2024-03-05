@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,12 +15,9 @@ class MusicProgressWidget extends ConsumerWidget {
     return StreamBuilder(
       stream: ref.read(audioPlayerProvider).positionStream,
       builder: (context, snapshot) {
-        // data is null
-        if (snapshot.data == ref.watch(audioPlayerProvider).duration) {
-          log("object");
-          ref.read(currentIndexProvider.notifier).state =
-              ref.watch(audioPlayerProvider).currentIndex;
-        }
+        ///read current index
+        ref.invalidate(currentIndexProvider);
+
         return ProgressBar(
           onSeek: (value) async {
             await ref.read(audioPlayerProvider).seek(value);

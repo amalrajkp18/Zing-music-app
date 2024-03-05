@@ -38,29 +38,37 @@ class HomePage extends ConsumerWidget {
                     return SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
-                          // set audio source
+                          /// set audio source
                           final List<AudioSource> audioSources = data
                               .map(
                                 (source) => AudioSource.file(source.data),
                               )
                               .toList();
-                          // create playlist
-                          final playlist =
+
+                          /// create playlist
+                          final ConcatenatingAudioSource playlist =
                               ConcatenatingAudioSource(children: audioSources);
-                          // music list view
+
+                          /// music list view
                           return InkWell(
-                            onTap: () {
-                              //player visibler
+                            onTap: () async {
+                              ///player visibler
                               ref.read(playBarProvider.notifier).state = true;
                               ref.invalidate(playStateProvider);
+
+                              /// notify index chaged
                               ref.invalidate(currentIndexProvider);
-                              // read song path
-                              ref.read(audioPlayerProvider).setAudioSource(
+
+                              /// read song path
+                              await ref
+                                  .read(audioPlayerProvider)
+                                  .setAudioSource(
                                     playlist,
                                     initialIndex: index,
                                   );
-                              // play song for click
-                              ref.read(audioPlayerProvider).play();
+
+                              /// play song for click
+                              await ref.read(audioPlayerProvider).play();
                             },
                             child: MusicTileWidget(
                               songName: data[index].title,

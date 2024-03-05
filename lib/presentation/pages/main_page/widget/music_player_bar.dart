@@ -15,6 +15,10 @@ class MusicPlayerBar extends ConsumerWidget {
   final VoidCallback onTap;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    //listen if index change
+    ref.watch(audioPlayerProvider).positionStream.listen((event) {
+      ref.invalidate(currentIndexProvider);
+    });
     return Align(
       alignment: Alignment.bottomCenter,
       child: ClipRRect(
@@ -63,11 +67,11 @@ class MusicPlayerBar extends ConsumerWidget {
                             .watch(songsProvider)
                             .value?[ref.watch(currentIndexProvider) ?? 0]
                             .title
-                            .substring(0, 15) ??
+                            .substring(0, 14) ??
                         "",
                     style: GoogleFonts.nunito(
                       color: AppColors.white,
-                      fontSize: context.width(18),
+                      fontSize: context.width(16),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -85,13 +89,13 @@ class MusicPlayerBar extends ConsumerWidget {
                   icon: ref.watch(playStateProvider)
                       ? Icons.play_arrow
                       : Icons.pause,
-                  onPressed: () {
+                  onPressed: () async {
                     ref.watch(playStateProvider)
                         ? ref.read(playStateProvider.notifier).state = false
                         : ref.read(playStateProvider.notifier).state = true;
                     ref.read(audioPlayerProvider).playing
-                        ? ref.read(audioPlayerProvider).pause()
-                        : ref.read(audioPlayerProvider).play();
+                        ? await ref.read(audioPlayerProvider).pause()
+                        : await ref.read(audioPlayerProvider).play();
                   },
                 ),
                 MusicButtonWidget(
@@ -99,8 +103,6 @@ class MusicPlayerBar extends ConsumerWidget {
                   icon: Icons.skip_next,
                   onPressed: () async {
                     await ref.read(audioPlayerProvider).seekToNext();
-                    ref.read(currentIndexProvider.notifier).state =
-                        ref.read(audioPlayerProvider).currentIndex;
                   },
                 )
               ],

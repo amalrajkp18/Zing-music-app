@@ -7,6 +7,7 @@ part 'splash_provider.g.dart';
 
 @riverpod
 Future<Widget> splash(SplashRef ref) async {
+  //request permmission
   final PermissionStatus storageStatus = await Permission.storage.request();
 
   if (storageStatus == PermissionStatus.granted) {
@@ -21,6 +22,7 @@ Future<Widget> splash(SplashRef ref) async {
     if (storageStatus.isGranted) {
       return const MainPage();
     } else {
+      // Handle permission status not granted
       throw "A error occured for storage permmisson denied";
     }
   } else {

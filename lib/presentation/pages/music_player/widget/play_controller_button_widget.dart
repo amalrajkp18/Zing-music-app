@@ -4,7 +4,6 @@ import 'package:just_audio/just_audio.dart';
 import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
 import 'package:music_app/presentation/providers/audio_player_provider/audio_player_provider.dart';
-import 'package:music_app/presentation/providers/songs_provider/songs_provider.dart';
 import 'package:music_app/presentation/widgets/music_button_widget.dart';
 
 class PlayControllerButtonsWidget extends ConsumerWidget {
@@ -36,8 +35,6 @@ class PlayControllerButtonsWidget extends ConsumerWidget {
           icon: Icons.skip_previous_outlined,
           onPressed: () async {
             await ref.read(audioPlayerProvider).seekToPrevious();
-            ref.read(currentIndexProvider.notifier).state =
-                ref.read(audioPlayerProvider).currentIndex;
           },
           size: 60,
         ),
@@ -49,8 +46,8 @@ class PlayControllerButtonsWidget extends ConsumerWidget {
                 : ref.read(playStateProvider.notifier).state = true;
             // pause or play
             ref.watch(audioPlayerProvider).playing
-                ? ref.read(audioPlayerProvider).pause()
-                : ref.read(audioPlayerProvider).play();
+                ? await ref.read(audioPlayerProvider).pause()
+                : await ref.read(audioPlayerProvider).play();
           },
           borderRadius: BorderRadius.circular(context.width(80)),
           child: CircleAvatar(
@@ -74,8 +71,6 @@ class PlayControllerButtonsWidget extends ConsumerWidget {
           icon: Icons.skip_next_outlined,
           onPressed: () async {
             await ref.read(audioPlayerProvider).seekToNext();
-            ref.read(currentIndexProvider.notifier).state =
-                ref.read(audioPlayerProvider).currentIndex;
           },
           size: 60,
         ),
@@ -86,12 +81,12 @@ class PlayControllerButtonsWidget extends ConsumerWidget {
           iconColor: ref.watch(repeatStateProvider)
               ? AppColors.playPauseCircle
               : AppColors.white,
-          onPressed: () {
+          onPressed: () async {
             ref.read(repeatStateProvider.notifier).state =
                 !ref.read(repeatStateProvider);
             ref.watch(repeatStateProvider)
-                ? ref.read(audioPlayerProvider).setLoopMode(LoopMode.one)
-                : ref.read(audioPlayerProvider).setLoopMode(LoopMode.off);
+                ? await ref.read(audioPlayerProvider).setLoopMode(LoopMode.one)
+                : await ref.read(audioPlayerProvider).setLoopMode(LoopMode.off);
           },
         ),
       ],

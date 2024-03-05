@@ -3,7 +3,7 @@ import 'package:music_app/core/utils/app_responsive_units.dart';
 import 'package:music_app/core/utils/white_space.dart';
 
 import 'widget/music_image_widget.dart';
-import 'widget/music_playerapp_bar_widget.dart';
+import 'widget/music_player_app_bar_widget.dart';
 import 'widget/music_progress_widget.dart';
 import 'widget/play_controller_button_widget.dart';
 

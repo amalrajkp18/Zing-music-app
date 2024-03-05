@@ -70,7 +70,6 @@ class MusicTileWidget extends StatelessWidget {
                 )
               ],
             ),
-            // spacer
           ],
         ),
       ),
