@@ -49,12 +49,13 @@ class MusicTileWidget extends StatelessWidget {
               children: [
                 // music title
                 Text(
-                  songName,
+                  songName.length < 26 ? songName : songName.substring(0, 26),
                   style: GoogleFonts.nunito(
                     color: AppColors.white,
-                    fontSize: context.width(17),
+                    fontSize: context.width(18),
                     fontWeight: FontWeight.w500,
                   ),
+                  overflow: TextOverflow.clip,
                 ),
                 // height space
                 WhiteSpace.space(context: context, height: 5),

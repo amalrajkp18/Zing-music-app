@@ -67,13 +67,18 @@ class MusicPlayerBar extends ConsumerWidget {
                         "",
                     style: GoogleFonts.nunito(
                       color: AppColors.white,
-                      fontSize: context.width(20),
+                      fontSize: context.width(18),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
                 // spacer
                 const Spacer(),
+                // favorite button
+                MusicButtonWidget(
+                  icon: Icons.favorite,
+                  onPressed: () {},
+                ),
                 // pause or play button
                 MusicButtonWidget(
                   size: 38,

@@ -59,12 +59,11 @@ class HomePage extends ConsumerWidget {
                                     playlist,
                                     initialIndex: index,
                                   );
-
                               // play song for click
                               ref.read(audioPlayerProvider).play();
                             },
                             child: MusicTileWidget(
-                              songName: data[index].title.substring(0, 20),
+                              songName: data[index].title,
                               singer: data[index].artist ?? '',
                             ),
                           );
