@@ -18,10 +18,10 @@ class PlayControllerButtonsWidget extends ConsumerWidget {
       children: [
         // shuffle button
         MusicButtonWidget(
-          icon: Icons.shuffle,
-          iconColor: ref.watch(shuffleStateProvider)
-              ? AppColors.playPauseCircle
-              : AppColors.white,
+          icon: ref.watch(shuffleStateProvider)
+              ? Icons.shuffle_on_rounded
+              : Icons.shuffle,
+          iconColor: AppColors.white,
           onPressed: () {
             ref.read(shuffleStateProvider.notifier).state =
                 !ref.read(shuffleStateProvider);
@@ -76,11 +76,10 @@ class PlayControllerButtonsWidget extends ConsumerWidget {
         ),
         // repeat button
         MusicButtonWidget(
-          icon:
-              ref.watch(repeatStateProvider) ? Icons.repeat_one : Icons.repeat,
-          iconColor: ref.watch(repeatStateProvider)
-              ? AppColors.playPauseCircle
-              : AppColors.white,
+          icon: ref.watch(repeatStateProvider)
+              ? Icons.repeat_one_on_outlined
+              : Icons.repeat,
+          iconColor: AppColors.white,
           onPressed: () async {
             ref.read(repeatStateProvider.notifier).state =
                 !ref.read(repeatStateProvider);

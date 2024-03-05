@@ -15,7 +15,7 @@ class MusicProgressWidget extends ConsumerWidget {
     return StreamBuilder(
       stream: ref.read(audioPlayerProvider).positionStream,
       builder: (context, snapshot) {
-        ///read current index
+        //read current index
         ref.invalidate(currentIndexProvider);
 
         return ProgressBar(
@@ -27,7 +27,7 @@ class MusicProgressWidget extends ConsumerWidget {
           bufferedBarColor: AppColors.grey,
           thumbColor: AppColors.playProgress,
           barHeight: context.height(8),
-          thumbRadius: context.width(8),
+          thumbRadius: context.width(12),
           progress: snapshot.data ?? Duration.zero,
           total: ref.watch(audioPlayerProvider).duration ?? Duration.zero,
           timeLabelTextStyle: GoogleFonts.nunito(

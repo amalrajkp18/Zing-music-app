@@ -21,6 +21,7 @@ class SplashPage extends ConsumerWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  //error text
                   Text(
                     "error ${error.toString()}",
                     style: GoogleFonts.nunito(
@@ -30,6 +31,7 @@ class SplashPage extends ConsumerWidget {
                   ),
                   // height space
                   WhiteSpace.space(context: context, height: 20),
+                  // button invalidate provider
                   ElevatedButton(
                     onPressed: () {
                       ref.invalidate(splashProvider);

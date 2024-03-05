@@ -41,7 +41,6 @@ class MainPage extends ConsumerWidget {
               },
             )
           : const SizedBox.shrink(),
-
       bottomNavigationBar: const ZingBottomNavBarWidget(),
     );
   }

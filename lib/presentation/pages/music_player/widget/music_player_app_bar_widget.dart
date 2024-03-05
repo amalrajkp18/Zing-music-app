@@ -9,6 +9,7 @@ import 'package:text_scroll/text_scroll.dart';
 
 AppBar musicPlayerAppBarWidget({required BuildContext context}) {
   return AppBar(
+    // back button
     leading: MusicButtonWidget(
       icon: Icons.arrow_back_ios,
       onPressed: () {
@@ -34,6 +35,7 @@ AppBar musicPlayerAppBarWidget({required BuildContext context}) {
     ),
     centerTitle: true,
     actions: [
+      // fav button
       MusicButtonWidget(
         icon: Icons.favorite_outline,
         onPressed: () {},

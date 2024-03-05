@@ -33,19 +33,21 @@ class SearchPage extends StatelessWidget {
                   context.width(10),
                 ),
               ),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: 'What do you want to listen to ?',
-                  hintStyle: GoogleFonts.nunito(
-                    color: AppColors.black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: context.width(18),
-                  ),
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: AppColors.black,
-                    size: context.width(40),
+              child: Center(
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'What do you want to listen to ?',
+                    hintStyle: GoogleFonts.nunito(
+                      color: AppColors.black,
+                      fontWeight: FontWeight.w600,
+                      fontSize: context.width(18),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: AppColors.black,
+                      size: context.width(40),
+                    ),
                   ),
                 ),
               ),

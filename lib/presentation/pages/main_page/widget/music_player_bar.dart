@@ -48,6 +48,7 @@ class MusicPlayerBar extends ConsumerWidget {
             ),
             child: Row(
               children: [
+                // image thubnail
                 Container(
                   width: context.width(70),
                   height: context.height(70),

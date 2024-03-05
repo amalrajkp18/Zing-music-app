@@ -38,28 +38,28 @@ class HomePage extends ConsumerWidget {
                     return SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
-                          /// set audio source
+                          // set audio source
                           final List<AudioSource> audioSources = data
                               .map(
                                 (source) => AudioSource.file(source.data),
                               )
                               .toList();
 
-                          /// create playlist
+                          // create playlist
                           final ConcatenatingAudioSource playlist =
                               ConcatenatingAudioSource(children: audioSources);
 
-                          /// music list view
+                          // music list view
                           return InkWell(
                             onTap: () async {
-                              ///player visibler
+                              //player visibler
                               ref.read(playBarProvider.notifier).state = true;
                               ref.invalidate(playStateProvider);
 
-                              /// notify index chaged
+                              // notify index chaged
                               ref.invalidate(currentIndexProvider);
 
-                              /// read song path
+                              // read song path
                               await ref
                                   .read(audioPlayerProvider)
                                   .setAudioSource(
@@ -67,7 +67,7 @@ class HomePage extends ConsumerWidget {
                                     initialIndex: index,
                                   );
 
-                              /// play song for click
+                              // play song for click
                               await ref.read(audioPlayerProvider).play();
                             },
                             child: MusicTileWidget(
