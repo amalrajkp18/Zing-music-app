@@ -14,9 +14,10 @@ class Search extends _$Search {
   void searchSong(String query) async {
     List<SongModel> songList = await AudionFileSource().fetchAudio();
     if (songList.isNotEmpty) {
+      RegExp regExp = RegExp(query.toLowerCase());
       state = [
         for (SongModel song in songList)
-          if (song.title.contains(query)) song
+          if (regExp.hasMatch(song.title.toLowerCase())) song
       ];
       if (state!.isEmpty) {
         state = null;
