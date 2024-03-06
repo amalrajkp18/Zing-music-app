@@ -48,14 +48,17 @@ class MusicTileWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // music title
-                Text(
-                  songName.length < 26 ? songName : songName.substring(0, 26),
-                  style: GoogleFonts.nunito(
-                    color: AppColors.white,
-                    fontSize: context.width(18),
-                    fontWeight: FontWeight.w500,
+                SizedBox(
+                  width: context.width(290),
+                  child: Text(
+                    songName.length > 70 ? songName.substring(0, 70) : songName,
+                    style: GoogleFonts.nunito(
+                      color: AppColors.white,
+                      fontSize: context.width(15),
+                      fontWeight: FontWeight.w500,
+                    ),
+                    overflow: TextOverflow.clip,
                   ),
-                  overflow: TextOverflow.clip,
                 ),
                 // height space
                 WhiteSpace.space(context: context, height: 5),
@@ -64,7 +67,7 @@ class MusicTileWidget extends StatelessWidget {
                   singer,
                   style: GoogleFonts.nunito(
                     color: AppColors.whiteSmokeGrey,
-                    fontSize: context.width(13),
+                    fontSize: context.width(12),
                     fontWeight: FontWeight.normal,
                   ),
                 )

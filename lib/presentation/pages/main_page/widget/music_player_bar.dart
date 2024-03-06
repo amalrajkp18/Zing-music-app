@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
 import 'package:music_app/presentation/providers/audio_player_provider/audio_player_provider.dart';
+import 'package:music_app/presentation/providers/songs_provider/current_songs_provider.dart';
 import 'package:music_app/presentation/providers/songs_provider/songs_provider.dart';
 import 'package:music_app/presentation/widgets/music_button_widget.dart';
 
@@ -18,6 +19,7 @@ class MusicPlayerBar extends ConsumerWidget {
     //listen if index change
     ref.watch(audioPlayerProvider).positionStream.listen((event) {
       ref.invalidate(currentIndexProvider);
+      ref.invalidate(playStateProvider);
     });
     return Align(
       alignment: Alignment.bottomCenter,
@@ -65,8 +67,8 @@ class MusicPlayerBar extends ConsumerWidget {
                   padding: EdgeInsets.only(left: context.width(12)),
                   child: Text(
                     ref
-                            .watch(songsProvider)
-                            .value?[ref.watch(currentIndexProvider) ?? 0]
+                            .watch(currentSongsProvider)?[
+                                ref.watch(currentIndexProvider) ?? 0]
                             .title
                             .substring(0, 14) ??
                         "",
@@ -88,12 +90,9 @@ class MusicPlayerBar extends ConsumerWidget {
                 MusicButtonWidget(
                   size: 38,
                   icon: ref.watch(playStateProvider)
-                      ? Icons.play_arrow
-                      : Icons.pause,
+                      ? Icons.pause
+                      : Icons.play_arrow,
                   onPressed: () async {
-                    ref.watch(playStateProvider)
-                        ? ref.read(playStateProvider.notifier).state = false
-                        : ref.read(playStateProvider.notifier).state = true;
                     ref.read(audioPlayerProvider).playing
                         ? await ref.read(audioPlayerProvider).pause()
                         : await ref.read(audioPlayerProvider).play();

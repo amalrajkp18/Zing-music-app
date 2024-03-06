@@ -11,10 +11,9 @@ AudioPlayer audioPlayer(AudioPlayerRef ref) {
 }
 
 /// is playing or not
-final playStateProvider = StateProvider<bool>((ref) => false);
-
-///play bar is visble or not
-final playBarProvider = StateProvider<bool>((ref) => false);
+final playStateProvider = StateProvider<bool>(
+  (ref) => ref.watch(audioPlayerProvider).playing,
+);
 
 final shuffleStateProvider = StateProvider<bool>((ref) => false);
 

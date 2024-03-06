@@ -8,7 +8,9 @@ part of 'audio_player_provider.dart';
 
 String _$audioPlayerHash() => r'e54ce7e5ba2cd12db0f50d7caaf550952480c971';
 
-/// See also [audioPlayer].
+/// audio player controller
+///
+/// Copied from [audioPlayer].
 @ProviderFor(audioPlayer)
 final audioPlayerProvider = Provider<AudioPlayer>.internal(
   audioPlayer,

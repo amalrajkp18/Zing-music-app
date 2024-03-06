@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
+import 'package:music_app/presentation/providers/songs_provider/current_songs_provider.dart';
 import 'package:music_app/presentation/providers/songs_provider/songs_provider.dart';
 import 'package:music_app/presentation/widgets/music_button_widget.dart';
 import 'package:text_scroll/text_scroll.dart';
@@ -20,8 +21,8 @@ AppBar musicPlayerAppBarWidget({required BuildContext context}) {
     title: Consumer(
       builder: (context, ref, _) => TextScroll(
         ref
-                .watch(songsProvider)
-                .value?[ref.watch(currentIndexProvider) ?? 0]
+                .watch(
+                    currentSongsProvider)?[ref.watch(currentIndexProvider) ?? 0]
                 .title ??
             "",
         style: GoogleFonts.nunito(

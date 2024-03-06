@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
+import 'package:music_app/domain/usecases/audio_source_usecase/set_audio_source_usecase.dart';
+import 'package:music_app/presentation/providers/audio_player_provider/audio_player_provider.dart';
+import 'package:music_app/presentation/providers/search_provider/search_provider.dart';
+import 'package:music_app/presentation/providers/songs_provider/current_songs_provider.dart';
+import 'package:music_app/presentation/providers/songs_provider/songs_provider.dart';
+import 'package:music_app/presentation/widgets/music_tile_widget.dart';
 
-class SearchPage extends StatelessWidget {
+import 'widget/search_bar_widget.dart';
+
+class SearchPage extends ConsumerWidget {
   const SearchPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         //  page title
@@ -20,40 +30,65 @@ class SearchPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.width(10)),
-        child: Column(
-          children: [
-            Container(
-              width: context.width(420),
-              height: context.height(60),
-              decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.circular(
-                  context.width(10),
-                ),
-              ),
-              child: Center(
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'What do you want to listen to ?',
-                    hintStyle: GoogleFonts.nunito(
-                      color: AppColors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: context.width(18),
-                    ),
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: AppColors.black,
-                      size: context.width(40),
-                    ),
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
+      body: Column(
+        children: [
+          const SearchBarWidget(),
+          (ref.watch(searchProvider) != null &&
+                  ref.watch(searchProvider)!.isEmpty)
+              ? const SizedBox.shrink()
+              : ref.watch(searchProvider) == null
+                  ? Padding(
+                      padding: EdgeInsets.only(top: context.height(80)),
+                      child: Image.asset(
+                        "assets/images/img_search_not_found.png",
+                        width: context.width(200),
+                      ),
+                    )
+                  : Expanded(
+                      child: ListView.builder(
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                            onTap: () async {
+                              // add songs list
+                              ref
+                                  .read(currentSongsProvider.notifier)
+                                  .addSongs(ref.read(searchProvider));
+
+                              // playlist
+                              final ConcatenatingAudioSource playlist =
+                                  SetAudioSourceUseCase.set(
+                                ref.watch(searchProvider)!,
+                              );
+
+                              ref.invalidate(playStateProvider);
+
+                              // read song path
+                              await ref
+                                  .read(audioPlayerProvider)
+                                  .setAudioSource(
+                                    playlist,
+                                    initialIndex: index,
+                                  );
+
+                              // play song for click
+                              await ref.read(audioPlayerProvider).play();
+
+                              // notify index chaged
+                              ref.invalidate(currentIndexProvider);
+                            },
+                            child: MusicTileWidget(
+                              songName:
+                                  ref.watch(searchProvider)?[index].title ?? "",
+                              singer:
+                                  ref.watch(searchProvider)?[index].artist ??
+                                      "",
+                            ),
+                          );
+                        },
+                        itemCount: ref.watch(searchProvider)?.length,
+                      ),
+                    )
+        ],
       ),
     );
   }

@@ -41,9 +41,6 @@ class PlayControllerButtonsWidget extends ConsumerWidget {
         // play pause button
         InkWell(
           onTap: () async {
-            ref.watch(playStateProvider)
-                ? ref.read(playStateProvider.notifier).state = false
-                : ref.read(playStateProvider.notifier).state = true;
             // pause or play
             ref.watch(audioPlayerProvider).playing
                 ? await ref.read(audioPlayerProvider).pause()
@@ -55,12 +52,12 @@ class PlayControllerButtonsWidget extends ConsumerWidget {
             backgroundColor: AppColors.playPauseCircle,
             child: ref.watch(playStateProvider)
                 ? Icon(
-                    Icons.play_arrow,
+                    Icons.pause,
                     color: AppColors.white,
                     size: context.width(60),
                   )
                 : Icon(
-                    Icons.pause,
+                    Icons.play_arrow,
                     color: AppColors.white,
                     size: context.width(60),
                   ),

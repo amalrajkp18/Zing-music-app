@@ -6,8 +6,8 @@ import 'package:music_app/presentation/pages/library/library_page.dart';
 import 'package:music_app/presentation/pages/main_page/widget/music_player_bar.dart';
 import 'package:music_app/presentation/pages/music_player/music_player_page.dart';
 import 'package:music_app/presentation/pages/search/search_page.dart';
-import 'package:music_app/presentation/providers/audio_player_provider/audio_player_provider.dart';
 import 'package:music_app/presentation/providers/bottom_nav_provider/bottom_nav_provider.dart';
+import 'package:music_app/presentation/providers/songs_provider/current_songs_provider.dart';
 
 import 'widget/zing_bottom_nav_bar_wodget.dart';
 
@@ -33,7 +33,8 @@ class MainPage extends ConsumerWidget {
       ),
       // bottom song info and controller
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: ref.watch(playBarProvider)
+      floatingActionButton: ref.watch(currentSongsProvider) != null &&
+              ref.watch(currentSongsProvider)!.isNotEmpty
           ? MusicPlayerBar(
               onTap: () {
                 //Navigate music player screen

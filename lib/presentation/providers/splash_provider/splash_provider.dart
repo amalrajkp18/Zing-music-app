@@ -10,13 +10,13 @@ Future<Widget> splash(SplashRef ref) async {
   //request permmission
   final PermissionStatus storageStatus = await Permission.storage.request();
 
-  if (storageStatus == PermissionStatus.granted) {
+  if (storageStatus.isGranted) {
     // Permission granted, proceed with storage access
     return await Future.delayed(
       const Duration(seconds: 3),
       () => const MainPage(),
     );
-  } else if (storageStatus == PermissionStatus.permanentlyDenied) {
+  } else if (storageStatus.isDenied) {
     // Permission denied permanently, open app settings
     await openAppSettings();
     if (storageStatus.isGranted) {

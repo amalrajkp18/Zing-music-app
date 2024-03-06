@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
 import 'package:music_app/presentation/providers/audio_player_provider/audio_player_provider.dart';
-import 'package:music_app/presentation/providers/songs_provider/songs_provider.dart';
 
 class MusicProgressWidget extends ConsumerWidget {
   const MusicProgressWidget({super.key});
@@ -15,9 +14,6 @@ class MusicProgressWidget extends ConsumerWidget {
     return StreamBuilder(
       stream: ref.read(audioPlayerProvider).positionStream,
       builder: (context, snapshot) {
-        //read current index
-        ref.invalidate(currentIndexProvider);
-
         return ProgressBar(
           onSeek: (value) async {
             await ref.read(audioPlayerProvider).seek(value);

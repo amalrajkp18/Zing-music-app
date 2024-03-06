@@ -4,7 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
+import 'package:music_app/domain/usecases/audio_source_usecase/set_audio_source_usecase.dart';
 import 'package:music_app/presentation/providers/audio_player_provider/audio_player_provider.dart';
+import 'package:music_app/presentation/providers/songs_provider/current_songs_provider.dart';
 import 'package:music_app/presentation/providers/songs_provider/songs_provider.dart';
 import 'package:music_app/presentation/widgets/music_tile_widget.dart';
 import 'package:music_app/presentation/widgets/shimmers/music_list_shimmer.dart';
@@ -35,25 +37,35 @@ class HomePage extends ConsumerWidget {
             // list view
             ref.watch(songsProvider).when(
                   data: (data) {
+                    if (data.isEmpty) {
+                      // data empty widget
+                      return SliverList(
+                        delegate: SliverChildListDelegate(
+                          [
+                            Align(
+                              alignment: Alignment.center,
+                              child: Image.asset(
+                                "assets/images/img_data_is-empty.png",
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    }
                     return SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
-                          // set audio source
-                          final List<AudioSource> audioSources = data
-                              .map(
-                                (source) => AudioSource.file(source.data),
-                              )
-                              .toList();
-
-                          // create playlist
-                          final ConcatenatingAudioSource playlist =
-                              ConcatenatingAudioSource(children: audioSources);
-
                           // music list view
                           return InkWell(
                             onTap: () async {
-                              //player visibler
-                              ref.read(playBarProvider.notifier).state = true;
+                              // add songs list
+                              ref
+                                  .read(currentSongsProvider.notifier)
+                                  .addSongs(data);
+                              // play list
+                              final ConcatenatingAudioSource playlist =
+                                  SetAudioSourceUseCase.set(data);
+
                               ref.invalidate(playStateProvider);
 
                               // notify index chaged
