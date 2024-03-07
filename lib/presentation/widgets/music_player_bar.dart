@@ -3,7 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
+import 'package:music_app/domain/entities/liked_song_entity/liked_song_entity.dart';
+import 'package:music_app/domain/usecases/liked_song_uses_case/liked_song_box_use_case.dart';
 import 'package:music_app/presentation/providers/audio_player_provider/audio_player_provider.dart';
+import 'package:music_app/presentation/providers/liked_song_provider/liked_check_provider.dart';
+import 'package:music_app/presentation/providers/liked_song_provider/liked_song_provider.dart';
 import 'package:music_app/presentation/providers/songs_provider/current_songs_provider.dart';
 import 'package:music_app/presentation/providers/songs_provider/songs_provider.dart';
 import 'package:music_app/presentation/widgets/music_button_widget.dart';
@@ -20,6 +24,9 @@ class MusicPlayerBar extends ConsumerWidget {
     ref.watch(audioPlayerProvider).positionStream.listen((_) {
       ref.invalidate(currentIndexProvider);
       ref.invalidate(playStateProvider);
+      // check is liked or not
+      ref.read(likedCheckProvider.notifier).isLiked(
+          ref.watch(currentSongsProvider)![ref.watch(currentIndexProvider)!]);
     });
 
     return Align(
@@ -59,17 +66,20 @@ class MusicPlayerBar extends ConsumerWidget {
                 // song name
                 Padding(
                   padding: EdgeInsets.only(left: context.width(12)),
-                  child: Text(
-                    ref
-                            .watch(currentSongsProvider)?[
-                                ref.watch(currentIndexProvider) ?? 0]
-                            .title
-                            .substring(0, 14) ??
-                        "",
-                    style: GoogleFonts.nunito(
-                      color: AppColors.white,
-                      fontSize: context.width(16),
-                      fontWeight: FontWeight.w600,
+                  child: SizedBox(
+                    width: context.width(150),
+                    child: Text(
+                      ref
+                              .watch(currentSongsProvider)?[
+                                  ref.watch(currentIndexProvider) ?? 0]
+                              .title ??
+                          "",
+                      style: GoogleFonts.nunito(
+                        color: AppColors.white,
+                        fontSize: context.width(16),
+                        fontWeight: FontWeight.w600,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ),
@@ -77,9 +87,28 @@ class MusicPlayerBar extends ConsumerWidget {
                 const Spacer(),
                 // favorite button
                 MusicButtonWidget(
-                  icon: Icons.favorite,
-                  iconColor: AppColors.white,
-                  onPressed: () {},
+                  icon: ref.watch(likedCheckProvider).isLiked
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                  iconColor: ref.watch(likedCheckProvider).isLiked
+                      ? Colors.red
+                      : AppColors.white,
+                  onPressed: () {
+                    // Liked song add  or remove
+                    if (ref.read(likedCheckProvider).isLiked) {
+                      LikedSongBoxUseCase.remove(
+                          ref.read(likedCheckProvider).id!);
+                    } else {
+                      LikedSongBoxUseCase.add(
+                        LikedSongEntity(
+                            data: ref
+                                .read(currentSongsProvider)![
+                                    ref.read(currentIndexProvider)!]
+                                .data),
+                      );
+                    }
+                    ref.invalidate(likedSongsProvider);
+                  },
                 ),
                 // pause or play button
                 MusicButtonWidget(

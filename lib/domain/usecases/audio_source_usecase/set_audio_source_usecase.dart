@@ -17,9 +17,6 @@ class SetAudioSourceUseCase {
           ),
         )
         .toList();
-    // create playlist
-    final ConcatenatingAudioSource playlist =
-        ConcatenatingAudioSource(children: audioSources);
-    return playlist;
+    return ConcatenatingAudioSource(children: audioSources);
   }
 }

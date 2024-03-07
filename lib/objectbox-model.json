@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:2358547285303276869",
-      "lastPropertyId": "4:5685501039811920084",
+      "lastPropertyId": "5:8041044500410301379",
       "name": "LikedSongEntity",
       "properties": [
         {
@@ -15,18 +15,8 @@
           "flags": 1
         },
         {
-          "id": "2:154377564521393379",
+          "id": "5:8041044500410301379",
           "name": "data",
-          "type": 9
-        },
-        {
-          "id": "3:5698571110991341150",
-          "name": "title",
-          "type": 9
-        },
-        {
-          "id": "4:5685501039811920084",
-          "name": "artist",
           "type": 9
         }
       ],
@@ -41,7 +31,11 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    154377564521393379,
+    5698571110991341150,
+    5685501039811920084
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

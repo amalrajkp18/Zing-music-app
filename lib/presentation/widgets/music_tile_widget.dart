@@ -51,7 +51,7 @@ class MusicTileWidget extends StatelessWidget {
                 SizedBox(
                   width: context.width(290),
                   child: Text(
-                    songName.length > 70 ? songName.substring(0, 70) : songName,
+                    songName.length > 65 ? songName.substring(0, 65) : songName,
                     style: GoogleFonts.nunito(
                       color: AppColors.white,
                       fontSize: context.width(15),

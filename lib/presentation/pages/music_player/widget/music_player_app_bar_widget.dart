@@ -3,10 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
+import 'package:music_app/domain/entities/liked_song_entity/liked_song_entity.dart';
+import 'package:music_app/domain/usecases/liked_song_uses_case/liked_song_box_use_case.dart';
+import 'package:music_app/presentation/providers/liked_song_provider/liked_check_provider.dart';
+import 'package:music_app/presentation/providers/liked_song_provider/liked_song_provider.dart';
 import 'package:music_app/presentation/providers/songs_provider/current_songs_provider.dart';
 import 'package:music_app/presentation/providers/songs_provider/songs_provider.dart';
 import 'package:music_app/presentation/widgets/music_button_widget.dart';
-import 'package:text_scroll/text_scroll.dart';
 
 AppBar musicPlayerAppBarWidget({required BuildContext context}) {
   return AppBar(
@@ -17,30 +20,42 @@ AppBar musicPlayerAppBarWidget({required BuildContext context}) {
         Navigator.pop(context);
       },
     ),
-    // song title
-    title: Consumer(
-      builder: (context, ref, _) => TextScroll(
-        ref
-                .watch(
-                    currentSongsProvider)?[ref.watch(currentIndexProvider) ?? 0]
-                .title ??
-            "",
-        style: GoogleFonts.nunito(
-          color: AppColors.white,
-          fontSize: context.width(18),
-          fontWeight: FontWeight.w600,
-        ),
-        numberOfReps: 2,
-        delayBefore: const Duration(seconds: 1),
+    title: Text(
+      "Now Playing",
+      style: GoogleFonts.nunito(
+        color: AppColors.white,
+        fontSize: context.width(24),
+        fontWeight: FontWeight.bold,
       ),
     ),
     centerTitle: true,
     actions: [
       // fav button
-      MusicButtonWidget(
-        icon: Icons.favorite_outline,
-        onPressed: () {},
-      ),
+      Consumer(
+        builder: (context, ref, _) => MusicButtonWidget(
+          icon: ref.watch(likedCheckProvider).isLiked
+              ? Icons.favorite
+              : Icons.favorite_border_sharp,
+          iconColor: ref.watch(likedCheckProvider).isLiked
+              ? Colors.red
+              : AppColors.white,
+          onPressed: () {
+            // Liked song add  or remove
+            if (ref.read(likedCheckProvider).isLiked) {
+              LikedSongBoxUseCase.remove(ref.read(likedCheckProvider).id!);
+            } else {
+              LikedSongBoxUseCase.add(
+                LikedSongEntity(
+                    data: ref
+                        .read(currentSongsProvider)![
+                            ref.read(currentIndexProvider)!]
+                        .data),
+              );
+            }
+            ref.invalidate(likedSongsProvider);
+          },
+        ),
+      )
     ],
   );
 }

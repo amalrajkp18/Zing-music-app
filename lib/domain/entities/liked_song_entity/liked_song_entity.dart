@@ -4,14 +4,8 @@ import 'package:objectbox/objectbox.dart';
 class LikedSongEntity {
   @Id()
   int id;
-  String data;
-  String title;
-  String? artist;
 
-  LikedSongEntity({
-    this.id = 0,
-    required this.data,
-    required this.title,
-    required this.artist,
-  });
+  String data;
+
+  LikedSongEntity({this.id = 0, required this.data});
 }

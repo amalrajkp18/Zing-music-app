@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
 import 'package:music_app/core/utils/white_space.dart';
+import 'package:music_app/presentation/providers/songs_provider/current_songs_provider.dart';
+import 'package:music_app/presentation/providers/songs_provider/songs_provider.dart';
 
 import 'widget/music_image_widget.dart';
 import 'widget/music_player_app_bar_widget.dart';
@@ -23,20 +28,54 @@ class MusicPlayerPage extends StatelessWidget {
           horizontal: context.width(30),
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // height space
-            WhiteSpace.space(context: context, height: 80),
+            WhiteSpace.space(context: context, height: 20),
             //music image
             const MusicImageWidget(),
-            // height space
-            WhiteSpace.space(context: context, height: 80),
+            // music title
+            Consumer(
+              builder: (context, ref, child) => Column(
+                children: [
+                  // song title
+                  Text(
+                    ref
+                            .watch(currentSongsProvider)?[
+                                ref.watch(currentIndexProvider) ?? 0]
+                            .title ??
+                        "",
+                    style: GoogleFonts.nunito(
+                      color: AppColors.white,
+                      fontSize: context.width(18),
+                      fontWeight: FontWeight.w600,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  // artist name
+                  Text(
+                    ref
+                            .watch(currentSongsProvider)?[
+                                ref.watch(currentIndexProvider) ?? 0]
+                            .artist ??
+                        "",
+                    style: GoogleFonts.nunito(
+                      color: AppColors.grey,
+                      fontSize: context.width(14),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
             // music progress bar
             const MusicProgressWidget(),
-            // height space
-            WhiteSpace.space(context: context, height: 70),
             // player controllers
             const PlayControllerButtonsWidget(),
-            // mute and timestreching
+            // height space
+            WhiteSpace.space(context: context, height: 60),
           ],
         ),
       ),
