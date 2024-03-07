@@ -36,6 +36,7 @@ class SearchBarWidget extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       fontSize: context.width(18),
                     ),
+                    keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'What do you want to listen to ?',

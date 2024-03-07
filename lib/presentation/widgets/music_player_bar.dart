@@ -17,10 +17,11 @@ class MusicPlayerBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     //listen if index change
-    ref.watch(audioPlayerProvider).positionStream.listen((event) {
+    ref.watch(audioPlayerProvider).positionStream.listen((_) {
       ref.invalidate(currentIndexProvider);
       ref.invalidate(playStateProvider);
     });
+
     return Align(
       alignment: Alignment.bottomCenter,
       child: ClipRRect(
@@ -34,14 +35,7 @@ class MusicPlayerBar extends ConsumerWidget {
               vertical: context.height(10),
             ),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  AppColors.black.withOpacity(0.6),
-                  AppColors.black.withOpacity(0.8)
-                ],
-                begin: AlignmentDirectional.topStart,
-                end: AlignmentDirectional.bottomEnd,
-              ),
+              color: AppColors.scaffoldBg,
               borderRadius: BorderRadius.circular(context.width(10)),
               border: Border.all(
                 width: 1.5,
@@ -84,6 +78,7 @@ class MusicPlayerBar extends ConsumerWidget {
                 // favorite button
                 MusicButtonWidget(
                   icon: Icons.favorite,
+                  iconColor: AppColors.white,
                   onPressed: () {},
                 ),
                 // pause or play button

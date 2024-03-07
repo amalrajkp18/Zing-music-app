@@ -33,7 +33,7 @@ class SplashPage extends ConsumerWidget {
                   WhiteSpace.space(context: context, height: 20),
                   // button invalidate provider
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       ref.invalidate(splashProvider);
                     },
                     style: ElevatedButton.styleFrom(

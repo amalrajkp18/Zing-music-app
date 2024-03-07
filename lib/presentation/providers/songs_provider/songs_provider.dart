@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_app/data/data_sources/audio_file_source/audio_file_source.dart';
 import 'package:music_app/presentation/providers/audio_player_provider/audio_player_provider.dart';
 import 'package:on_audio_query/on_audio_query.dart';
@@ -12,4 +11,4 @@ Future<List<SongModel>> songs(SongsRef ref) {
 }
 
 final currentIndexProvider =
-    StateProvider<int?>((ref) => ref.read(audioPlayerProvider).currentIndex);
+    Provider<int?>((ref) => ref.read(audioPlayerProvider).currentIndex);

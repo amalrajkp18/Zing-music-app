@@ -52,44 +52,38 @@ class HomePage extends ConsumerWidget {
                         ),
                       );
                     }
-                    return SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
-                          // music list view
-                          return InkWell(
-                            onTap: () async {
-                              // add songs list
-                              ref
-                                  .read(currentSongsProvider.notifier)
-                                  .addSongs(data);
-                              // play list
-                              final ConcatenatingAudioSource playlist =
-                                  SetAudioSourceUseCase.set(data);
+                    return SliverList.builder(
+                      // music list view
+                      itemBuilder: (context, index) => InkWell(
+                        onTap: () async {
+                          // add songs list
+                          ref
+                              .read(currentSongsProvider.notifier)
+                              .addSongs(data);
+                          // play list
+                          final ConcatenatingAudioSource playlist =
+                              SetAudioSourceUseCase.set(data);
 
-                              ref.invalidate(playStateProvider);
+                          ref.invalidate(playStateProvider);
 
-                              // notify index chaged
-                              ref.invalidate(currentIndexProvider);
+                          // notify index chaged
+                          ref.invalidate(currentIndexProvider);
 
-                              // read song path
-                              await ref
-                                  .read(audioPlayerProvider)
-                                  .setAudioSource(
-                                    playlist,
-                                    initialIndex: index,
-                                  );
+                          // read song path
+                          await ref.read(audioPlayerProvider).setAudioSource(
+                                playlist,
+                                initialIndex: index,
+                              );
 
-                              // play song for click
-                              await ref.read(audioPlayerProvider).play();
-                            },
-                            child: MusicTileWidget(
-                              songName: data[index].title,
-                              singer: data[index].artist ?? '',
-                            ),
-                          );
+                          // play song for click
+                          await ref.read(audioPlayerProvider).play();
                         },
-                        childCount: data.length,
+                        child: MusicTileWidget(
+                          songName: data[index].title,
+                          singer: data[index].artist ?? '',
+                        ),
                       ),
+                      itemCount: data.length,
                     );
                   },
                   error: (error, stackTrace) => SliverList(

@@ -11,7 +11,7 @@ AudioPlayer audioPlayer(AudioPlayerRef ref) {
 }
 
 /// is playing or not
-final playStateProvider = StateProvider<bool>(
+final playStateProvider = Provider<bool>(
   (ref) => ref.watch(audioPlayerProvider).playing,
 );
 

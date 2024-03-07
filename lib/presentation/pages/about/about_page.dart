@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
@@ -7,6 +6,7 @@ import 'package:music_app/core/utils/white_space.dart';
 
 import 'widget/about_desc_text_widget.dart';
 import 'widget/about_head_text_widget.dart';
+import 'widget/social_media_icons_widget.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -60,32 +60,31 @@ class AboutPage extends StatelessWidget {
                   "Have questions or feedback? We'd love to hear from you! Reach out to us at amalrajkp18@gmail.com or connect with us on social media:",
             ),
             // height space
-            WhiteSpace.space(context: context, height: 30),
+            WhiteSpace.space(context: context, height: 40),
             // connect apps
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                FaIcon(
-                  FontAwesomeIcons.github,
-                  color: AppColors.white,
+            const SocialMediaIconsWidget(),
+            // height space
+            WhiteSpace.space(context: context, height: 80),
+            // privacy policy
+            Text(
+              "Privacy Policy | Terms of Service | Copyright © 2024 Zing Music. All rights reserved.",
+              textAlign: TextAlign.center,
+              style: GoogleFonts.nunito(
+                color: AppColors.grey,
+                fontSize: context.width(15),
+              ),
+            ),
+            // height space
+            WhiteSpace.space(context: context, height: 40),
+            // version
+            Center(
+              child: Text(
+                "version 0.0.1",
+                textAlign: TextAlign.center,
+                style: GoogleFonts.nunito(
+                  color: AppColors.grey,
                 ),
-                FaIcon(
-                  FontAwesomeIcons.linkedin,
-                  color: AppColors.white,
-                ),
-                FaIcon(
-                  FontAwesomeIcons.instagram,
-                  color: AppColors.white,
-                ),
-                FaIcon(
-                  FontAwesomeIcons.globe,
-                  color: AppColors.white,
-                ),
-                FaIcon(
-                  FontAwesomeIcons.google,
-                  color: AppColors.white,
-                )
-              ],
+              ),
             )
           ],
         ),
