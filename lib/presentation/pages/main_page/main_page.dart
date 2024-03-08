@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:music_app/presentation/pages/about/about_page.dart';
 import 'package:music_app/presentation/pages/home/home_page.dart';
-import 'package:music_app/presentation/pages/library/library_page.dart';
+import 'package:music_app/presentation/pages/library/widget/library_page.dart';
 import 'package:music_app/presentation/widgets/music_player_bar.dart';
 import 'package:music_app/presentation/pages/music_player/music_player_page.dart';
 import 'package:music_app/presentation/pages/search/search_page.dart';

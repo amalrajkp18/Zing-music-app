@@ -61,7 +61,7 @@ class LibraryTileWidget extends StatelessWidget {
                     : const SizedBox.shrink(),
               ),
               // width spacer
-              WhiteSpace.space(context: context, width: 10),
+              WhiteSpace.space(context: context, width: 20),
               //libray song title and count
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
