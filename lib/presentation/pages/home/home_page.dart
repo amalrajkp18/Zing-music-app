@@ -22,7 +22,7 @@ class HomePage extends ConsumerWidget {
             ref.invalidate(songsProvider);
           },
           child: CustomScrollView(
-            physics: const ClampingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             slivers: [
               // app title app bar
               SliverAppBar(
@@ -106,7 +106,11 @@ class HomePage extends ConsumerWidget {
                         ],
                       ),
                     ),
-                    loading: () => const MusicListShimmer(),
+                    loading: () => SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                          (context, index) => const MusicListShimmer(),
+                          childCount: 8),
+                    ),
                   )
             ],
           ),

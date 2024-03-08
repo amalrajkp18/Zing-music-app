@@ -1,6 +1,7 @@
 import 'package:music_app/data/data_sources/audio_file_source/audio_file_source.dart';
 import 'package:music_app/data/data_sources/object_box-data_source/object_box_data_source.dart';
 import 'package:music_app/domain/entities/liked_song_entity/liked_song_entity.dart';
+import 'package:music_app/objectbox.g.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class LikedSongBoxUseCase {
@@ -31,5 +32,18 @@ class LikedSongBoxUseCase {
     } catch (e) {
       throw "An error ocurred liked Songs";
     }
+  }
+
+  static LikedSongEntity? checkIsLiked(SongModel songModel) {
+    final Query<LikedSongEntity> query = ObjectBoxDataSource
+        .instance.likedSongBox
+        .query(LikedSongEntity_.data.equals(songModel.data))
+        .build();
+
+    final List<LikedSongEntity> song = query.find();
+    if (song.length == 1) {
+      return song[0];
+    }
+    return null;
   }
 }

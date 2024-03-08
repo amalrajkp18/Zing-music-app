@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
 import 'package:music_app/core/utils/white_space.dart';
+import 'package:music_app/presentation/widgets/music_button_widget.dart';
 
 class MusicTileWidget extends StatelessWidget {
   const MusicTileWidget({
     super.key,
     required this.songName,
     required this.singer,
+    this.textWidgetWidth = 290,
+    this.isLibary = false,
+    this.isLiked = false,
+    this.textCount = 65,
+    this.librayPressed,
   });
   final String songName;
   final String singer;
+  final double textWidgetWidth;
+  final bool isLibary;
+  final bool isLiked;
+  final int textCount;
+  final VoidCallback? librayPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -25,21 +37,13 @@ class MusicTileWidget extends StatelessWidget {
         child: Row(
           children: [
             // music thumbnail
-            Container(
-              width: context.width(88),
-              height: context.height(90),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(
-                  context.width(10),
-                ),
-                image: const DecorationImage(
-                  image: AssetImage("assets/images/img_music_list.png"),
-                  fit: BoxFit.cover,
-                ),
-              ),
+            CircleAvatar(
+              radius: context.width(35),
+              backgroundImage:
+                  const AssetImage("assets/images/img_music_list.png"),
             ),
             // width spacer
-            WhiteSpace.space(context: context, width: 10),
+            WhiteSpace.space(context: context, width: 20),
             //music title and singer
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -47,9 +51,11 @@ class MusicTileWidget extends StatelessWidget {
               children: [
                 // music title
                 SizedBox(
-                  width: context.width(290),
+                  width: context.width(textWidgetWidth),
                   child: Text(
-                    songName.length > 65 ? songName.substring(0, 65) : songName,
+                    songName.length > textCount
+                        ? songName.substring(0, textCount)
+                        : songName,
                     style: Theme.of(context).textTheme.titleMedium,
                     overflow: TextOverflow.clip,
                   ),
@@ -63,6 +69,16 @@ class MusicTileWidget extends StatelessWidget {
                 )
               ],
             ),
+            // width space
+            const Spacer(),
+            // libary section button
+            isLibary
+                ? MusicButtonWidget(
+                    icon: isLiked ? Icons.favorite : Icons.remove,
+                    iconColor: isLiked ? Colors.red : AppColors.white,
+                    onPressed: librayPressed == null ? () {} : librayPressed!,
+                  )
+                : const SizedBox.shrink(),
           ],
         ),
       ),

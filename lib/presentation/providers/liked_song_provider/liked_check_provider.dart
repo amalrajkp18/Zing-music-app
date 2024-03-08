@@ -1,6 +1,5 @@
-import 'package:music_app/data/data_sources/object_box-data_source/object_box_data_source.dart';
 import 'package:music_app/domain/entities/liked_song_entity/liked_song_entity.dart';
-import 'package:music_app/objectbox.g.dart';
+import 'package:music_app/domain/usecases/liked_song_uses_case/liked_song_box_use_case.dart';
 import 'package:music_app/presentation/providers/liked_song_provider/liked_check_state.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -15,14 +14,9 @@ class LikedCheck extends _$LikedCheck {
   }
 
   void isLiked(SongModel songModel) {
-    final Query<LikedSongEntity> query = ObjectBoxDataSource
-        .instance.likedSongBox
-        .query(LikedSongEntity_.data.equals(songModel.data))
-        .build();
-
-    final List<LikedSongEntity> song = query.find();
-    state = song.length == 1
-        ? LikedCheckState(isLiked: true, id: song[0].id)
+    LikedSongEntity? songEntity = LikedSongBoxUseCase.checkIsLiked(songModel);
+    state = songEntity != null
+        ? LikedCheckState(isLiked: true, id: songEntity.id)
         : LikedCheckState(isLiked: false);
   }
 }

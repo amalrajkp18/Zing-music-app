@@ -11,56 +11,45 @@ class MusicListShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) => Shimmer.fromColors(
-          baseColor: AppColors.grey.withOpacity(0.1),
-          highlightColor: AppColors.grey.withOpacity(0.6),
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: context.width(5)),
-            width: context.width(350),
-            height: context.height(105),
-            child: Row(
+    return Shimmer.fromColors(
+      baseColor: AppColors.grey.withOpacity(0.1),
+      highlightColor: AppColors.grey.withOpacity(0.6),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: context.width(5)),
+        width: context.width(350),
+        height: context.height(105),
+        child: Row(
+          children: [
+            // music thumbnail
+            CircleAvatar(
+              radius: context.width(35),
+              backgroundColor: AppColors.grey,
+            ),
+            // width spacer
+            WhiteSpace.space(context: context, width: 10),
+            //music title and singer
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // music thumbnail
+                // music title
                 Container(
-                  width: context.width(88),
-                  height: context.height(90),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      context.width(10),
-                    ),
-                    color: AppColors.grey,
-                  ),
+                  width: context.width(180),
+                  height: context.height(20),
+                  color: AppColors.grey,
                 ),
-                // width spacer
-                WhiteSpace.space(context: context, width: 10),
-                //music title and singer
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // music title
-                    Container(
-                      width: context.width(180),
-                      height: context.height(20),
-                      color: AppColors.grey,
-                    ),
-                    // height space
-                    WhiteSpace.space(context: context, height: 5),
-                    // singer name
-                    Container(
-                      width: context.width(120),
-                      height: context.height(12),
-                      color: AppColors.grey,
-                    )
-                  ],
-                ),
+                // height space
+                WhiteSpace.space(context: context, height: 5),
+                // singer name
+                Container(
+                  width: context.width(120),
+                  height: context.height(12),
+                  color: AppColors.grey,
+                )
               ],
             ),
-          ),
+          ],
         ),
-        childCount: 8,
       ),
     );
   }
