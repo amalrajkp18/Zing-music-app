@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Zing",
-      theme: AppTheme.theme(),
+      theme: AppTheme.theme(context),
       routes: pageRoutes,
       initialRoute: SplashPage.routeName,
     );

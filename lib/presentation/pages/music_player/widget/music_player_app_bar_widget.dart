@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/core/colors/app_colors.dart';
-import 'package:music_app/core/utils/app_responsive_units.dart';
 import 'package:music_app/domain/entities/liked_song_entity/liked_song_entity.dart';
 import 'package:music_app/domain/usecases/liked_song_uses_case/liked_song_box_use_case.dart';
 import 'package:music_app/presentation/providers/liked_song_provider/liked_check_provider.dart';
@@ -20,14 +18,7 @@ AppBar musicPlayerAppBarWidget({required BuildContext context}) {
         Navigator.pop(context);
       },
     ),
-    title: Text(
-      "Now Playing",
-      style: GoogleFonts.nunito(
-        color: AppColors.white,
-        fontSize: context.width(24),
-        fontWeight: FontWeight.bold,
-      ),
-    ),
+    title: const Text("Now Playing"),
     centerTitle: true,
     actions: [
       // fav button

@@ -12,4 +12,6 @@ class AppColors {
 
   static const Color playPauseCircle = Color(0xFF6156E2);
   static const Color playProgress = Color(0xFF6156E2);
+
+  static const Color elevatedButton = Color.fromARGB(255, 65, 51, 221);
 }

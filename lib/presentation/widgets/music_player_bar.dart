@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
 import 'package:music_app/domain/entities/liked_song_entity/liked_song_entity.dart';
@@ -20,14 +19,16 @@ class MusicPlayerBar extends ConsumerWidget {
   final VoidCallback onTap;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //listen if index change
-    ref.watch(audioPlayerProvider).positionStream.listen((_) {
-      ref.invalidate(currentIndexProvider);
-      ref.invalidate(playStateProvider);
-      // check is liked or not
-      ref.read(likedCheckProvider.notifier).isLiked(
-          ref.watch(currentSongsProvider)![ref.watch(currentIndexProvider)!]);
-    });
+    //listen if change song
+    ref.watch(audioPlayerProvider).positionStream.listen(
+      (_) {
+        ref.invalidate(currentIndexProvider);
+        ref.invalidate(playStateProvider);
+        // check is liked or not
+        ref.read(likedCheckProvider.notifier).isLiked(
+            ref.watch(currentSongsProvider)![ref.watch(currentIndexProvider)!]);
+      },
+    );
 
     return Align(
       alignment: Alignment.bottomCenter,
@@ -74,11 +75,7 @@ class MusicPlayerBar extends ConsumerWidget {
                                   ref.watch(currentIndexProvider) ?? 0]
                               .title ??
                           "",
-                      style: GoogleFonts.nunito(
-                        color: AppColors.white,
-                        fontSize: context.width(16),
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: Theme.of(context).textTheme.bodySmall,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),

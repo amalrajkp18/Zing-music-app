@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
 import 'package:music_app/domain/usecases/audio_source_usecase/set_audio_source_usecase.dart';
 import 'package:music_app/presentation/providers/audio_player_provider/audio_player_provider.dart';
@@ -21,13 +19,8 @@ class SearchPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         //  page title
-        title: Text(
+        title: const Text(
           "Search",
-          style: GoogleFonts.nunito(
-            color: AppColors.white,
-            fontSize: context.width(24),
-            fontWeight: FontWeight.bold,
-          ),
         ),
       ),
       body: Column(

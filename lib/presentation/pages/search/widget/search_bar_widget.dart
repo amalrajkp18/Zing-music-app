@@ -40,11 +40,6 @@ class SearchBarWidget extends StatelessWidget {
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'What do you want to listen to ?',
-                      hintStyle: GoogleFonts.nunito(
-                        color: AppColors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: context.width(18),
-                      ),
                       prefixIcon: Icon(
                         Icons.search,
                         color: AppColors.black,

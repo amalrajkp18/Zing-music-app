@@ -23,10 +23,7 @@ class AboutPage extends StatelessWidget {
         // app title
         title: Text(
           "Zing",
-          style: GoogleFonts.pacifico(
-            color: AppColors.white,
-            fontSize: context.width(40),
-          ),
+          style: Theme.of(context).primaryTextTheme.titleLarge,
         ),
       ),
       body: Padding(

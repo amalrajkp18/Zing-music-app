@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
 import 'package:music_app/core/utils/white_space.dart';
 import 'package:music_app/presentation/providers/splash_provider/splash_provider.dart';
@@ -24,10 +22,7 @@ class SplashPage extends ConsumerWidget {
                   //error text
                   Text(
                     "error ${error.toString()}",
-                    style: GoogleFonts.nunito(
-                      color: AppColors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: Theme.of(context).primaryTextTheme.bodySmall,
                   ),
                   // height space
                   WhiteSpace.space(context: context, height: 20),
@@ -36,15 +31,9 @@ class SplashPage extends ConsumerWidget {
                     onPressed: () async {
                       ref.invalidate(splashProvider);
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.playPauseCircle,
-                    ),
                     child: Text(
                       "Grant Permmission",
-                      style: GoogleFonts.nunito(
-                        color: AppColors.white,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: Theme.of(context).primaryTextTheme.bodySmall,
                     ),
                   )
                 ],
@@ -67,10 +56,7 @@ class SplashPage extends ConsumerWidget {
                   //app name
                   Text(
                     "Zing",
-                    style: GoogleFonts.pacifico(
-                      color: AppColors.white,
-                      fontSize: context.width(26),
-                    ),
+                    style: Theme.of(context).primaryTextTheme.titleMedium,
                   )
                 ],
               ),

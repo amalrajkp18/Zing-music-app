@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
@@ -31,10 +30,7 @@ class HomePage extends ConsumerWidget {
                 toolbarHeight: context.height(80),
                 title: Text(
                   "Zing",
-                  style: GoogleFonts.pacifico(
-                    color: AppColors.white,
-                    fontSize: context.width(40),
-                  ),
+                  style: Theme.of(context).primaryTextTheme.titleLarge,
                 ),
                 floating: true,
               ),
@@ -93,13 +89,18 @@ class HomePage extends ConsumerWidget {
                     error: (error, stackTrace) => SliverList(
                       delegate: SliverChildListDelegate(
                         [
-                          Text("error ocuured${error.toString()}"),
-                          IconButton(
+                          Text(
+                            "error ocuured${error.toString()}",
+                            style: Theme.of(context).primaryTextTheme.bodySmall,
+                          ),
+                          ElevatedButton(
                             onPressed: () {
                               ref.invalidate(songsProvider);
                             },
-                            icon: const Icon(
-                              Icons.repeat_outlined,
+                            child: Text(
+                              "Reload",
+                              style:
+                                  Theme.of(context).primaryTextTheme.bodySmall,
                             ),
                           )
                         ],

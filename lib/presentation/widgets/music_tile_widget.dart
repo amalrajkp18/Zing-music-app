@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
 import 'package:music_app/core/utils/white_space.dart';
 
@@ -52,11 +50,7 @@ class MusicTileWidget extends StatelessWidget {
                   width: context.width(290),
                   child: Text(
                     songName.length > 65 ? songName.substring(0, 65) : songName,
-                    style: GoogleFonts.nunito(
-                      color: AppColors.white,
-                      fontSize: context.width(15),
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: Theme.of(context).textTheme.titleMedium,
                     overflow: TextOverflow.clip,
                   ),
                 ),
@@ -65,11 +59,7 @@ class MusicTileWidget extends StatelessWidget {
                 // singer name
                 Text(
                   singer,
-                  style: GoogleFonts.nunito(
-                    color: AppColors.whiteSmokeGrey,
-                    fontSize: context.width(12),
-                    fontWeight: FontWeight.normal,
-                  ),
+                  style: Theme.of(context).textTheme.titleSmall,
                 )
               ],
             ),

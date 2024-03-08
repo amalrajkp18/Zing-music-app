@@ -21,14 +21,7 @@ class LikedSongsPage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         //  page title
-        title: Text(
-          "Liked Songs",
-          style: GoogleFonts.nunito(
-            color: AppColors.white,
-            fontSize: context.width(24),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        title: const Text("Liked Songs"),
       ),
       body: ref.watch(likedSongsProvider).when(
             data: (data) {
@@ -93,10 +86,7 @@ class LikedSongsPage extends ConsumerWidget {
                 // error text
                 Text(
                   "error ${error.toString()}",
-                  style: GoogleFonts.nunito(
-                    color: AppColors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
                 // height space
                 WhiteSpace.space(context: context, height: 20),
@@ -105,15 +95,9 @@ class LikedSongsPage extends ConsumerWidget {
                   onPressed: () async {
                     ref.invalidate(likedSongsProvider);
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.playPauseCircle,
-                  ),
                   child: Text(
                     "Reload",
-                    style: GoogleFonts.nunito(
-                      color: AppColors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 )
               ],
