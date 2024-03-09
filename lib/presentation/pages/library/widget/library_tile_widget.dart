@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
 import 'package:music_app/core/utils/white_space.dart';
-import 'package:music_app/presentation/widgets/music_button_widget.dart';
 
 class LibraryTileWidget extends StatelessWidget {
   const LibraryTileWidget({
@@ -11,15 +10,15 @@ class LibraryTileWidget extends StatelessWidget {
     this.isLiked = false,
     required this.title,
     required this.songCount,
-    this.deletOnPressed,
     required this.onTap,
+    this.trailing,
   });
 
   final bool isLiked;
   final String title;
   final int songCount;
   final VoidCallback onTap;
-  final VoidCallback? deletOnPressed;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +57,14 @@ class LibraryTileWidget extends StatelessWidget {
                         size: context.width(50),
                         color: AppColors.white,
                       )
-                    : const SizedBox.shrink(),
+                    : Center(
+                        child: Text(title.substring(0, 1).toUpperCase(),
+                            style: GoogleFonts.nunito(
+                              color: AppColors.white,
+                              fontSize: context.width(30),
+                              fontWeight: FontWeight.bold,
+                            )),
+                      ),
               ),
               // width spacer
               WhiteSpace.space(context: context, width: 20),
@@ -91,14 +97,8 @@ class LibraryTileWidget extends StatelessWidget {
               ),
               // width spacer
               const Spacer(),
-              // delete button
-              isLiked
-                  ? const SizedBox.shrink()
-                  : MusicButtonWidget(
-                      icon: Icons.delete,
-                      onPressed:
-                          deletOnPressed == null ? () {} : deletOnPressed!,
-                    )
+              // trailing button
+              trailing != null ? trailing! : const SizedBox.shrink()
             ],
           ),
         ),

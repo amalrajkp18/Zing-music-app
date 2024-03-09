@@ -53,22 +53,16 @@ class MusicPlayerBar extends ConsumerWidget {
             child: Row(
               children: [
                 // image thubnail
-                Container(
-                  width: context.width(70),
-                  height: context.height(70),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(context.width(5)),
-                    image: const DecorationImage(
-                      image: AssetImage("assets/images/img_music_list.png"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                CircleAvatar(
+                  radius: context.width(30),
+                  backgroundImage:
+                      const AssetImage("assets/images/img_music_list.png"),
                 ),
                 // song name
                 Padding(
                   padding: EdgeInsets.only(left: context.width(12)),
                   child: SizedBox(
-                    width: context.width(150),
+                    width: context.width(160),
                     child: Text(
                       ref
                               .watch(currentSongsProvider)?[

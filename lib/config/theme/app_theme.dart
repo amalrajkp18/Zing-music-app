@@ -32,6 +32,11 @@ class AppTheme {
         ),
       ),
       textTheme: TextTheme(
+        titleLarge: GoogleFonts.nunito(
+          color: AppColors.white,
+          fontSize: context.width(25),
+          fontWeight: FontWeight.bold,
+        ),
         titleMedium: GoogleFonts.nunito(
           color: AppColors.white,
           fontSize: context.width(15),
@@ -51,6 +56,10 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.elevatedButton,
+          fixedSize: Size(
+            context.width(130),
+            context.height(25),
+          ),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
@@ -58,6 +67,18 @@ class AppTheme {
           color: AppColors.black,
           fontWeight: FontWeight.w600,
           fontSize: context.width(18),
+        ),
+      ),
+      iconTheme: const IconThemeData(
+        color: AppColors.white,
+      ),
+      popupMenuTheme: PopupMenuThemeData(
+        iconSize: context.width(30),
+        color: AppColors.scaffoldBg,
+        textStyle: GoogleFonts.nunito(
+          color: AppColors.white,
+          fontSize: context.width(15),
+          fontWeight: FontWeight.w600,
         ),
       ),
     );
