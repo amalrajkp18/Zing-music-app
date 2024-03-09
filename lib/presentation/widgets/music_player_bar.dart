@@ -62,7 +62,7 @@ class MusicPlayerBar extends ConsumerWidget {
                 Padding(
                   padding: EdgeInsets.only(left: context.width(12)),
                   child: SizedBox(
-                    width: context.width(150),
+                    width: context.width(160),
                     child: Text(
                       ref
                               .watch(currentSongsProvider)?[

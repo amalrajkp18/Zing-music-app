@@ -62,14 +62,14 @@ class LibraryTileWidget extends StatelessWidget {
                           title.substring(0, 1).toUpperCase(),
                           style: GoogleFonts.nunito(
                             color: AppColors.white,
-                            fontSize: context.width(26),
+                            fontSize: context.width(30),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
               ),
               // width spacer
-              WhiteSpace.space(context: context, width: 10),
+              WhiteSpace.space(context: context, width: 20),
               //libray song title and count
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
