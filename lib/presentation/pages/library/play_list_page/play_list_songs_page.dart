@@ -3,18 +3,18 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:music_app/core/utils/app_responsive_units.dart';
-import 'package:music_app/domain/entities/play_list_entity/play_list_entity.dart';
-import 'package:music_app/domain/usecases/audio_source_usecase/set_audio_source_usecase.dart';
-import 'package:music_app/domain/usecases/playlist_use_case/play_list_box_use_case.dart';
-import 'package:music_app/presentation/providers/audio_player_provider/audio_player_provider.dart';
-import 'package:music_app/presentation/providers/play_list_provider/play_list_provider.dart';
-import 'package:music_app/presentation/providers/play_list_provider/play_list_songs_provider.dart';
-import 'package:music_app/presentation/providers/songs_provider/current_songs_provider.dart';
-import 'package:music_app/presentation/providers/songs_provider/songs_provider.dart';
-import 'package:music_app/presentation/widgets/music_button_widget.dart';
-import 'package:music_app/presentation/widgets/music_tile_widget.dart';
-import 'package:music_app/presentation/widgets/shimmers/music_list_shimmer.dart';
+import 'package:zing/core/utils/app_responsive_units.dart';
+import 'package:zing/domain/entities/play_list_entity/play_list_entity.dart';
+import 'package:zing/domain/usecases/audio_source_usecase/set_audio_source_usecase.dart';
+import 'package:zing/domain/usecases/playlist_use_case/play_list_box_use_case.dart';
+import 'package:zing/presentation/providers/audio_player_provider/audio_player_provider.dart';
+import 'package:zing/presentation/providers/play_list_provider/play_list_provider.dart';
+import 'package:zing/presentation/providers/play_list_provider/play_list_songs_provider.dart';
+import 'package:zing/presentation/providers/songs_provider/current_songs_provider.dart';
+import 'package:zing/presentation/providers/songs_provider/songs_provider.dart';
+import 'package:zing/presentation/widgets/music_button_widget.dart';
+import 'package:zing/presentation/widgets/music_tile_widget.dart';
+import 'package:zing/presentation/widgets/shimmers/music_list_shimmer.dart';
 
 class PlayListSongPage extends StatelessWidget {
   const PlayListSongPage({

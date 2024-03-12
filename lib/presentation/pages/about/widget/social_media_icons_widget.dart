@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:music_app/core/colors/app_colors.dart';
-import 'package:music_app/core/utils/app_responsive_units.dart';
+import 'package:zing/core/colors/app_colors.dart';
+import 'package:zing/core/utils/app_responsive_units.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SocialMediaIconsWidget extends StatelessWidget {

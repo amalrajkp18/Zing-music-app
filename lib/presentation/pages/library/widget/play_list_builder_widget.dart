@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:music_app/domain/entities/play_list_entity/play_list_entity.dart';
-import 'package:music_app/domain/usecases/playlist_use_case/play_list_box_use_case.dart';
-import 'package:music_app/presentation/pages/library/play_list_page/play_list_songs_page.dart';
-import 'package:music_app/presentation/widgets/library_tile_widget.dart';
-import 'package:music_app/presentation/widgets/play_list_title_control_widget.dart';
-import 'package:music_app/presentation/providers/play_list_provider/play_list_provider.dart';
+import 'package:zing/domain/entities/play_list_entity/play_list_entity.dart';
+import 'package:zing/domain/usecases/playlist_use_case/play_list_box_use_case.dart';
+import 'package:zing/presentation/pages/library/play_list_page/play_list_songs_page.dart';
+import 'package:zing/presentation/widgets/library_tile_widget.dart';
+import 'package:zing/presentation/widgets/play_list_title_control_widget.dart';
+import 'package:zing/presentation/providers/play_list_provider/play_list_provider.dart';
 
 class PlayListBuilderWidget extends ConsumerWidget {
   const PlayListBuilderWidget({
@@ -59,6 +59,7 @@ class PlayListBuilderWidget extends ConsumerWidget {
                         PlayListEntity(
                           id: playListEntity.id,
                           playListName: playListEditingController.text,
+                          songList: playListEntity.songList,
                         ),
                       );
                       Navigator.pop(context);

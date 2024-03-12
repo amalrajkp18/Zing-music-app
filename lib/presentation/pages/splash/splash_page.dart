@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:music_app/core/utils/app_responsive_units.dart';
-import 'package:music_app/core/utils/white_space.dart';
-import 'package:music_app/presentation/providers/splash_provider/splash_provider.dart';
+import 'package:zing/core/utils/app_responsive_units.dart';
+import 'package:zing/core/utils/white_space.dart';
+import 'package:zing/presentation/providers/splash_provider/splash_provider.dart';
 
 class SplashPage extends ConsumerWidget {
   const SplashPage({super.key});

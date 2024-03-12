@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:music_app/core/colors/app_colors.dart';
-import 'package:music_app/core/utils/app_responsive_units.dart';
-import 'package:music_app/presentation/providers/audio_player_provider/audio_player_provider.dart';
-import 'package:music_app/presentation/widgets/music_button_widget.dart';
+import 'package:zing/core/colors/app_colors.dart';
+import 'package:zing/core/utils/app_responsive_units.dart';
+import 'package:zing/presentation/providers/audio_player_provider/audio_player_provider.dart';
+import 'package:zing/presentation/widgets/music_button_widget.dart';
 
 class PlayControllerButtonsWidget extends ConsumerWidget {
   const PlayControllerButtonsWidget({

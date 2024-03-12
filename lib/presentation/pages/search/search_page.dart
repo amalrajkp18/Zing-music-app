@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:music_app/core/utils/app_responsive_units.dart';
-import 'package:music_app/domain/usecases/audio_source_usecase/set_audio_source_usecase.dart';
-import 'package:music_app/presentation/providers/audio_player_provider/audio_player_provider.dart';
-import 'package:music_app/presentation/providers/search_provider/search_provider.dart';
-import 'package:music_app/presentation/providers/songs_provider/current_songs_provider.dart';
-import 'package:music_app/presentation/providers/songs_provider/songs_provider.dart';
-import 'package:music_app/presentation/widgets/music_tile_widget.dart';
+import 'package:zing/core/utils/app_responsive_units.dart';
+import 'package:zing/domain/usecases/audio_source_usecase/set_audio_source_usecase.dart';
+import 'package:zing/presentation/providers/audio_player_provider/audio_player_provider.dart';
+import 'package:zing/presentation/providers/search_provider/search_provider.dart';
+import 'package:zing/presentation/providers/songs_provider/current_songs_provider.dart';
+import 'package:zing/presentation/providers/songs_provider/songs_provider.dart';
+import 'package:zing/presentation/widgets/music_tile_widget.dart';
 
 import 'widget/search_bar_widget.dart';
 

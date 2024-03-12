@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:music_app/core/colors/app_colors.dart';
-import 'package:music_app/core/utils/app_responsive_units.dart';
-import 'package:music_app/domain/entities/liked_song_entity/liked_song_entity.dart';
-import 'package:music_app/domain/usecases/liked_song_uses_case/liked_song_box_use_case.dart';
-import 'package:music_app/presentation/providers/audio_player_provider/audio_player_provider.dart';
-import 'package:music_app/presentation/providers/liked_song_provider/liked_check_provider.dart';
-import 'package:music_app/presentation/providers/liked_song_provider/liked_song_provider.dart';
-import 'package:music_app/presentation/providers/songs_provider/current_songs_provider.dart';
-import 'package:music_app/presentation/providers/songs_provider/songs_provider.dart';
-import 'package:music_app/presentation/widgets/music_button_widget.dart';
+import 'package:zing/core/colors/app_colors.dart';
+import 'package:zing/core/utils/app_responsive_units.dart';
+import 'package:zing/domain/entities/liked_song_entity/liked_song_entity.dart';
+import 'package:zing/domain/usecases/liked_song_uses_case/liked_song_box_use_case.dart';
+import 'package:zing/presentation/providers/audio_player_provider/audio_player_provider.dart';
+import 'package:zing/presentation/providers/liked_song_provider/liked_check_provider.dart';
+import 'package:zing/presentation/providers/liked_song_provider/liked_song_provider.dart';
+import 'package:zing/presentation/providers/songs_provider/current_songs_provider.dart';
+import 'package:zing/presentation/providers/songs_provider/songs_provider.dart';
+import 'package:zing/presentation/widgets/music_button_widget.dart';
 
 class MusicPlayerBar extends ConsumerWidget {
   const MusicPlayerBar({

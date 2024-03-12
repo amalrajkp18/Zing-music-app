@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:music_app/core/utils/app_responsive_units.dart';
+import 'package:zing/core/utils/app_responsive_units.dart';
 
 class WhiteSpace {
   static Widget space({

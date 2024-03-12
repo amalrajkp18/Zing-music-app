@@ -1,7 +1,7 @@
-import 'package:music_app/data/data_sources/audio_file_source/audio_file_source.dart';
-import 'package:music_app/data/data_sources/object_box-data_source/object_box_data_source.dart';
-import 'package:music_app/domain/entities/play_list_entity/play_list_entity.dart';
-import 'package:music_app/objectbox.g.dart';
+import 'package:zing/data/data_sources/audio_file_source/audio_file_source.dart';
+import 'package:zing/data/data_sources/object_box-data_source/object_box_data_source.dart';
+import 'package:zing/domain/entities/play_list_entity/play_list_entity.dart';
+import 'package:zing/objectbox.g.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 class PlayListBoxUseCase {

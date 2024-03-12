@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:music_app/core/colors/app_colors.dart';
-import 'package:music_app/core/utils/app_responsive_units.dart';
-import 'package:music_app/presentation/providers/search_provider/search_provider.dart';
+import 'package:zing/core/colors/app_colors.dart';
+import 'package:zing/core/utils/app_responsive_units.dart';
+import 'package:zing/presentation/providers/search_provider/search_provider.dart';
 
 class SearchBarWidget extends StatelessWidget {
   const SearchBarWidget({

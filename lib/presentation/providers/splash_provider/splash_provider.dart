@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/presentation/pages/main_page/main_page.dart';
+import 'package:zing/presentation/pages/main_page/main_page.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

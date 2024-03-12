@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:music_app/domain/entities/play_list_entity/play_list_entity.dart';
-import 'package:music_app/domain/usecases/playlist_use_case/play_list_box_use_case.dart';
-import 'package:music_app/presentation/pages/library/liked_songs_page/liked_songs_page.dart';
-import 'package:music_app/presentation/widgets/library_tile_widget.dart';
-import 'package:music_app/presentation/pages/library/widget/play_list_builder_widget.dart';
-import 'package:music_app/presentation/providers/liked_song_provider/liked_song_provider.dart';
-import 'package:music_app/presentation/providers/play_list_provider/play_list_provider.dart';
-import 'package:music_app/presentation/widgets/music_button_widget.dart';
+import 'package:zing/domain/entities/play_list_entity/play_list_entity.dart';
+import 'package:zing/domain/usecases/playlist_use_case/play_list_box_use_case.dart';
+import 'package:zing/presentation/pages/library/liked_songs_page/liked_songs_page.dart';
+import 'package:zing/presentation/widgets/library_tile_widget.dart';
+import 'package:zing/presentation/pages/library/widget/play_list_builder_widget.dart';
+import 'package:zing/presentation/providers/liked_song_provider/liked_song_provider.dart';
+import 'package:zing/presentation/providers/play_list_provider/play_list_provider.dart';
+import 'package:zing/presentation/widgets/music_button_widget.dart';
 
 import '../../widgets/play_list_title_control_widget.dart';
 

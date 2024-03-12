@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/core/colors/app_colors.dart';
-import 'package:music_app/core/utils/app_responsive_units.dart';
-import 'package:music_app/core/utils/white_space.dart';
+import 'package:zing/core/colors/app_colors.dart';
+import 'package:zing/core/utils/app_responsive_units.dart';
+import 'package:zing/core/utils/white_space.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MusicListShimmer extends StatelessWidget {

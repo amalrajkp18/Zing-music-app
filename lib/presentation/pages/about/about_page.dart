@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:music_app/core/colors/app_colors.dart';
-import 'package:music_app/core/utils/app_responsive_units.dart';
-import 'package:music_app/core/utils/white_space.dart';
+import 'package:zing/core/colors/app_colors.dart';
+import 'package:zing/core/utils/app_responsive_units.dart';
+import 'package:zing/core/utils/white_space.dart';
 
 import 'widget/about_desc_text_widget.dart';
 import 'widget/about_head_text_widget.dart';

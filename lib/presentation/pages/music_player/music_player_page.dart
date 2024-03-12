@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:music_app/core/colors/app_colors.dart';
-import 'package:music_app/core/utils/app_responsive_units.dart';
-import 'package:music_app/core/utils/white_space.dart';
-import 'package:music_app/presentation/providers/songs_provider/current_songs_provider.dart';
-import 'package:music_app/presentation/providers/songs_provider/songs_provider.dart';
+import 'package:zing/core/colors/app_colors.dart';
+import 'package:zing/core/utils/app_responsive_units.dart';
+import 'package:zing/core/utils/white_space.dart';
+import 'package:zing/presentation/providers/songs_provider/current_songs_provider.dart';
+import 'package:zing/presentation/providers/songs_provider/songs_provider.dart';
 
 import 'widget/music_image_widget.dart';
 import 'widget/music_player_app_bar_widget.dart';
