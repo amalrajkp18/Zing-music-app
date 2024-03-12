@@ -31,7 +31,7 @@ class MainPage extends ConsumerWidget {
         },
         children: pagesList,
       ),
-      // bottom song info and controller
+      // bottom song info and controllers
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: ref.watch(currentSongsProvider) != null &&
               ref.watch(currentSongsProvider)!.isNotEmpty

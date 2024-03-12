@@ -153,6 +153,7 @@ Future<dynamic> addSongsPlayListWidget(BuildContext context, WidgetRef ref) {
                     songList: playListEntity.songList,
                   ),
                 );
+                ref.invalidate(playListProvider);
               }
 
               Navigator.pop(context);
