@@ -118,6 +118,9 @@ class MusicPlayerBar extends ConsumerWidget {
                   icon: Icons.skip_next,
                   onPressed: () async {
                     await ref.read(audioPlayerProvider).seekToNext();
+                    if (!ref.read(playStateProvider)) {
+                      await ref.read(audioPlayerProvider).play();
+                    }
                   },
                 )
               ],

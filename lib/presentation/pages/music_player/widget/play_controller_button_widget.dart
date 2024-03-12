@@ -35,6 +35,9 @@ class PlayControllerButtonsWidget extends ConsumerWidget {
           icon: Icons.skip_previous_outlined,
           onPressed: () async {
             await ref.read(audioPlayerProvider).seekToPrevious();
+            if (!ref.read(playStateProvider)) {
+              await ref.read(audioPlayerProvider).play();
+            }
           },
           size: 60,
         ),
@@ -68,6 +71,9 @@ class PlayControllerButtonsWidget extends ConsumerWidget {
           icon: Icons.skip_next_outlined,
           onPressed: () async {
             await ref.read(audioPlayerProvider).seekToNext();
+            if (!ref.read(playStateProvider)) {
+              await ref.read(audioPlayerProvider).play();
+            }
           },
           size: 60,
         ),
