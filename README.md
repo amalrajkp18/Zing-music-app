@@ -52,7 +52,7 @@ Zing Music App is a Flutter-based application designed to provide users with an 
 ## How to Use
 
 1. Clone the repository:
- ```bash 
+```bash 
     git clone https://github.com/amalrajkp18/Zing-music-app.git
 ```
 2. Navigate to the project directory: 
@@ -61,17 +61,14 @@ Zing Music App is a Flutter-based application designed to provide users with an 
 ```
 3. Install dependencies: 
 ```bash 
-flutter pub get
+    flutter pub get
 ```
 4. Run the app: 
 ```bash
- flutter run
+    flutter run
 ```
 
 ## Contributions
 
 Contributions are welcome! If you'd like to contribute to Zing Music App, please open an issue or submit a pull request on GitHub.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
