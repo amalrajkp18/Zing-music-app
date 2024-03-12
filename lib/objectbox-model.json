@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:2358547285303276869",
-      "lastPropertyId": "5:8041044500410301379",
+      "lastPropertyId": "6:6693276408160186665",
       "name": "LikedSongEntity",
       "properties": [
         {
@@ -15,15 +15,39 @@
           "flags": 1
         },
         {
-          "id": "5:8041044500410301379",
+          "id": "6:6693276408160186665",
           "name": "data",
           "type": 9
         }
       ],
       "relations": []
+    },
+    {
+      "id": "2:5112914928936452560",
+      "lastPropertyId": "3:7727921224462924097",
+      "name": "PlayListEntity",
+      "properties": [
+        {
+          "id": "1:7988328337349844926",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8359437111588044170",
+          "name": "playListName",
+          "type": 9
+        },
+        {
+          "id": "3:7727921224462924097",
+          "name": "songList",
+          "type": 30
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "1:2358547285303276869",
+  "lastEntityId": "2:5112914928936452560",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
@@ -34,7 +58,8 @@
   "retiredPropertyUids": [
     154377564521393379,
     5698571110991341150,
-    5685501039811920084
+    5685501039811920084,
+    8041044500410301379
   ],
   "retiredRelationUids": [],
   "version": 1

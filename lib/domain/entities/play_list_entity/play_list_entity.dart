@@ -1,13 +1,14 @@
 import 'package:objectbox/objectbox.dart';
-import 'package:on_audio_query/on_audio_query.dart';
 
 @Entity()
 class PlayListEntity {
   @Id()
   int id;
 
-  String tittle;
-  List<SongModel>? songsList;
+  List<String> songList;
 
-  PlayListEntity({this.id = 0, required this.tittle, this.songsList});
+  final String playListName;
+
+  PlayListEntity(
+      {this.id = 0, this.songList = const [], required this.playListName});
 }

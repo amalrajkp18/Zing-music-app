@@ -12,19 +12,21 @@ class LibraryTileWidget extends StatelessWidget {
     required this.songCount,
     required this.onTap,
     this.trailing,
+    this.libaryBoxSize = 80,
   });
 
   final bool isLiked;
   final String title;
-  final int songCount;
+  final String songCount;
   final VoidCallback onTap;
   final Widget? trailing;
+  final double libaryBoxSize;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: context.width(15),
+        horizontal: context.width(10),
         vertical: context.height(10),
       ),
       child: InkWell(
@@ -37,8 +39,8 @@ class LibraryTileWidget extends StatelessWidget {
             children: [
               // library box
               Container(
-                width: context.width(80),
-                height: context.height(80),
+                width: context.width(libaryBoxSize),
+                height: context.height(libaryBoxSize),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(
                     context.width(10),
@@ -76,19 +78,22 @@ class LibraryTileWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // music title
-                  Text(
-                    title,
-                    style: GoogleFonts.nunito(
-                      color: AppColors.white,
-                      fontSize: context.width(17),
-                      fontWeight: FontWeight.w500,
+                  SizedBox(
+                    width: context.width(240),
+                    child: Text(
+                      title,
+                      style: GoogleFonts.nunito(
+                        color: AppColors.white,
+                        fontSize: context.width(17),
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                   // height space
                   WhiteSpace.space(context: context, height: 5),
                   // singer name
                   Text(
-                    "$songCount songs for you",
+                    songCount,
                     style: GoogleFonts.nunito(
                       color: AppColors.whiteSmokeGrey,
                       fontSize: context.width(13),

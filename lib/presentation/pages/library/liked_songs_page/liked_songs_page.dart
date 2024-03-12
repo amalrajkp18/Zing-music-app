@@ -59,15 +59,15 @@ class LikedSongsPage extends ConsumerWidget {
                   ),
                 );
               }
+              // play list
+              final ConcatenatingAudioSource playlist =
+                  SetAudioSourceUseCase.set(data);
               return ListView.builder(
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) => InkWell(
                   onTap: () async {
                     // add songs list
                     ref.read(currentSongsProvider.notifier).addSongs(data);
-                    // play list
-                    final ConcatenatingAudioSource playlist =
-                        SetAudioSourceUseCase.set(data);
 
                     ref.invalidate(playStateProvider);
 

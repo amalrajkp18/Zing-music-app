@@ -74,7 +74,7 @@ class MusicTileWidget extends StatelessWidget {
             // libary section button
             isLibary
                 ? MusicButtonWidget(
-                    icon: isLiked ? Icons.favorite : Icons.remove,
+                    icon: isLiked ? Icons.favorite : Icons.delete,
                     iconColor: isLiked ? Colors.red : AppColors.white,
                     onPressed: librayPressed == null ? () {} : librayPressed!,
                   )

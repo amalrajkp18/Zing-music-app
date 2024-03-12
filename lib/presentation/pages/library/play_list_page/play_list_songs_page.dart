@@ -1,64 +1,62 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:music_app/core/colors/app_colors.dart';
 import 'package:music_app/core/utils/app_responsive_units.dart';
+import 'package:music_app/domain/entities/play_list_entity/play_list_entity.dart';
 import 'package:music_app/domain/usecases/audio_source_usecase/set_audio_source_usecase.dart';
+import 'package:music_app/domain/usecases/playlist_use_case/play_list_box_use_case.dart';
 import 'package:music_app/presentation/providers/audio_player_provider/audio_player_provider.dart';
+import 'package:music_app/presentation/providers/play_list_provider/play_list_provider.dart';
+import 'package:music_app/presentation/providers/play_list_provider/play_list_songs_provider.dart';
 import 'package:music_app/presentation/providers/songs_provider/current_songs_provider.dart';
 import 'package:music_app/presentation/providers/songs_provider/songs_provider.dart';
+import 'package:music_app/presentation/widgets/music_button_widget.dart';
 import 'package:music_app/presentation/widgets/music_tile_widget.dart';
 import 'package:music_app/presentation/widgets/shimmers/music_list_shimmer.dart';
 
-class HomePage extends ConsumerWidget {
-  const HomePage({super.key});
+class PlayListSongPage extends StatelessWidget {
+  const PlayListSongPage({
+    super.key,
+    required this.title,
+    required this.songList,
+    required this.id,
+  });
+
+  final String title;
+  final List<String> songList;
+  final int id;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: RefreshIndicator(
-          onRefresh: () async {
-            ref.invalidate(songsProvider);
+      appBar: AppBar(
+        leading: MusicButtonWidget(
+          icon: Icons.arrow_back_ios,
+          onPressed: () {
+            Navigator.pop(context);
           },
-          child: CustomScrollView(
-            physics: const BouncingScrollPhysics(),
-            slivers: [
-              // app title app bar
-              SliverAppBar(
-                backgroundColor: AppColors.scaffoldBg,
-                toolbarHeight: context.height(80),
-                title: Text(
-                  "Zing",
-                  style: Theme.of(context).primaryTextTheme.titleLarge,
-                ),
-                floating: true,
+        ),
+        title: Text("$title play list"),
+      ),
+      body: songList.isEmpty
+          ? Center(
+              child: Image.asset(
+                "assets/images/img_data_is_empty.png",
+                width: context.width(300),
               ),
-              // list view
-              ref.watch(songsProvider).when(
+            )
+          : Consumer(
+              builder: (context, ref, _) => ref
+                  .watch(playListSongsProvider(songData: songList))
+                  .when(
                     data: (data) {
-                      if (data.isEmpty) {
-                        // data empty widget
-                        return SliverList(
-                          delegate: SliverChildListDelegate(
-                            [
-                              Align(
-                                alignment: Alignment.center,
-                                child: Image.asset(
-                                  "assets/images/img_data_is_empty.png",
-                                  width: context.width(300),
-                                ),
-                              )
-                            ],
-                          ),
-                        );
-                      }
                       // play list
                       final ConcatenatingAudioSource playlist =
                           SetAudioSourceUseCase.set(data);
 
-                      return SliverList.builder(
-                        // music list view
+                      return ListView.builder(
                         itemBuilder: (context, index) => InkWell(
                           onTap: () async {
                             // add songs list
@@ -81,23 +79,40 @@ class HomePage extends ConsumerWidget {
                             await ref.read(audioPlayerProvider).play();
                           },
                           child: MusicTileWidget(
+                            textWidgetWidth: 240,
+                            textCount: 60,
+                            isLibary: true,
                             songName: data[index].title,
-                            singer: data[index].artist ?? '',
+                            singer: data[index].artist ?? "",
+                            librayPressed: () {
+                              // remove song from playlist
+                              songList.remove(data[index].data);
+                              log(songList.toString());
+                              PlayListBoxUseCase.add(
+                                PlayListEntity(
+                                    id: id,
+                                    playListName: title,
+                                    songList: songList),
+                              );
+                              ref.invalidate(playListSongsProvider);
+                              ref.invalidate(playListProvider);
+                            },
                           ),
                         ),
                         itemCount: data.length,
                       );
                     },
-                    error: (error, stackTrace) => SliverList(
-                      delegate: SliverChildListDelegate(
-                        [
+                    error: (error, stackTrace) => Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
                           Text(
                             "error ocuured${error.toString()}",
                             style: Theme.of(context).primaryTextTheme.bodySmall,
                           ),
                           ElevatedButton(
                             onPressed: () {
-                              ref.invalidate(songsProvider);
+                              ref.invalidate(playListSongsProvider);
                             },
                             child: Text(
                               "Reload",
@@ -108,16 +123,12 @@ class HomePage extends ConsumerWidget {
                         ],
                       ),
                     ),
-                    loading: () => SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                          (context, index) => const MusicListShimmer(),
-                          childCount: 8),
+                    loading: () => ListView.builder(
+                      itemBuilder: (context, index) => const MusicListShimmer(),
+                      itemCount: 12,
                     ),
-                  )
-            ],
-          ),
-        ),
-      ),
+                  ),
+            ),
     );
   }
 }
