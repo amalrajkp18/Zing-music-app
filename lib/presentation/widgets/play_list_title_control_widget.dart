@@ -66,6 +66,10 @@ Future<dynamic> playlistTtileControlWidget({
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.transparent,
                   elevation: 0,
+                  fixedSize: Size(
+                    context.width(130),
+                    context.height(25),
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                       context.width(25),
@@ -86,6 +90,12 @@ Future<dynamic> playlistTtileControlWidget({
               ),
               //create or edit button
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  fixedSize: Size(
+                    context.width(130),
+                    context.height(25),
+                  ),
+                ),
                 onPressed: onPressed,
                 child: Text(
                   isEdit ? "Edit" : "Create",

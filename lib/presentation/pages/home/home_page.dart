@@ -42,11 +42,13 @@ class HomePage extends ConsumerWidget {
                         return SliverList(
                           delegate: SliverChildListDelegate(
                             [
-                              Align(
-                                alignment: Alignment.center,
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: context.height(200),
+                                  horizontal: context.width(50),
+                                ),
                                 child: Image.asset(
                                   "assets/images/img_data_is_empty.png",
-                                  width: context.width(300),
                                 ),
                               )
                             ],

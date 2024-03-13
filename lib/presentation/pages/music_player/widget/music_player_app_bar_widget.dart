@@ -114,54 +114,62 @@ Future<dynamic> addSongsPlayListWidget(BuildContext context, WidgetRef ref) {
     builder: (context) => Container(
       color: AppColors.scaffoldBg,
       width: context.width(430),
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          PlayListEntity playListEntity = ref.watch(playListProvider)[index];
-          return LibraryTileWidget(
-            libaryBoxSize: 60,
-            title: playListEntity.playListName,
-            songCount: "${playListEntity.songList.length} songs playlist",
-            onTap: () {
-              // check songs in playlist already
-              if (PlayListBoxUseCase.isAlreadyExistSong(
-                id: playListEntity.id,
-                data: ref
-                    .watch(
-                        currentSongsProvider)![ref.watch(currentIndexProvider)!]
-                    .data,
-              )) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      "Song already exist",
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                  ),
-                );
-              } else {
-                // add songs playlist
-                playListEntity.songList.add(
-                  ref
-                      .watch(currentSongsProvider)![
-                          ref.watch(currentIndexProvider)!]
-                      .data,
-                );
-                PlayListBoxUseCase.add(
-                  PlayListEntity(
-                    id: playListEntity.id,
-                    playListName: playListEntity.playListName,
-                    songList: playListEntity.songList,
-                  ),
-                );
-                ref.invalidate(playListProvider);
-              }
+      child: ref.watch(playListProvider).isEmpty
+          ? Center(
+              child: Text(
+                "No Playlists",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            )
+          : ListView.builder(
+              itemBuilder: (context, index) {
+                PlayListEntity playListEntity =
+                    ref.watch(playListProvider)[index];
+                return LibraryTileWidget(
+                  libaryBoxSize: 60,
+                  title: playListEntity.playListName,
+                  songCount: "${playListEntity.songList.length} songs playlist",
+                  onTap: () {
+                    // check songs in playlist already
+                    if (PlayListBoxUseCase.isAlreadyExistSong(
+                      id: playListEntity.id,
+                      data: ref
+                          .watch(currentSongsProvider)![
+                              ref.watch(currentIndexProvider)!]
+                          .data,
+                    )) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            "Song already exist",
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
+                        ),
+                      );
+                    } else {
+                      // add songs playlist
+                      playListEntity.songList.add(
+                        ref
+                            .watch(currentSongsProvider)![
+                                ref.watch(currentIndexProvider)!]
+                            .data,
+                      );
+                      PlayListBoxUseCase.add(
+                        PlayListEntity(
+                          id: playListEntity.id,
+                          playListName: playListEntity.playListName,
+                          songList: playListEntity.songList,
+                        ),
+                      );
+                      ref.invalidate(playListProvider);
+                    }
 
-              Navigator.pop(context);
-            },
-          );
-        },
-        itemCount: ref.watch(playListProvider).length,
-      ),
+                    Navigator.pop(context);
+                  },
+                );
+              },
+              itemCount: ref.watch(playListProvider).length,
+            ),
     ),
   );
 }

@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:zing/presentation/pages/main_page/main_page.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:zing/presentation/pages/main_page/main_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'splash_provider.g.dart';
 
 @riverpod
 Future<Widget> splash(SplashRef ref) async {
-  //request permmission
+  // request permmission
   final PermissionStatus storageStatus = await Permission.storage.request();
+  final PermissionStatus audioStatus = await Permission.audio.request();
 
-  if (storageStatus.isGranted) {
+  if (storageStatus.isGranted || audioStatus.isGranted) {
     // Permission granted, proceed with storage access
     return await Future.delayed(
       const Duration(seconds: 3),
       () => const MainPage(),
     );
-  } else if (storageStatus.isDenied) {
+  } else if (storageStatus.isDenied || audioStatus.isDenied) {
     // Permission denied permanently, open app settings
     await openAppSettings();
     if (storageStatus.isGranted) {
