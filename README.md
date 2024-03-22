@@ -68,6 +68,11 @@ Zing Music App is a Flutter-based application designed to provide users with an 
     flutter run
 ```
 
+## Download
+
+[Zing Music App is also available on the Amazon Appstore. You can download it here.](https://www.amazon.com/gp/product/B0CXTQ4FLZ)
+
+
 ## Contributions
 
 Contributions are welcome! If you'd like to contribute to Zing Music App, please open an issue or submit a pull request on GitHub.
